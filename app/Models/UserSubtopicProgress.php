@@ -25,27 +25,28 @@ use Illuminate\Database\Eloquent\Model;
 class UserSubtopicProgress extends Model
 {
 	protected $table = 'user_subtopic_progresses';
+
 	public $timestamps = false;
 
 	protected $casts = [
-		'user_id' => 'int',
-		'subtopic_id' => 'int',
+		'id' => 'integer',
+		'user_id' => 'integer',
+		'subtopic_id' => 'integer',
 		'completed_at' => 'datetime'
 	];
 
 	protected $fillable = [
 		'user_id',
 		'subtopic_id',
-		'completed_at'
 	];
 
 	public function subtopic()
 	{
-		return $this->belongsTo(Subtopic::class);
+		return $this->belongsTo(Subtopic::class, 'subtopic_id');
 	}
 
 	public function user()
 	{
-		return $this->belongsTo(User::class);
+		return $this->belongsTo(User::class, 'user_id');
 	}
 }

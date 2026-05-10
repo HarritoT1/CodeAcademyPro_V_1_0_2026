@@ -9,6 +9,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class User
@@ -32,26 +33,31 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property Role|null $role
  * @property PasswordResetToken|null $password_reset_token
- * @property Collection|Registration[] $registrations
- * @property Collection|Session[] $sessions
- * @property Collection|Subtopic[] $subtopics
- * @property Collection|Topic[] $topics
+ * @property Collection|Course[] $courses
+ * @property Collection|UserTopicProgress[] $topic_progresses
+ * @property Collection|UserSubtopicProgress[] $subtopic_progresses
  *
  * @package App\Models
  */
 class User extends Model
 {
+	use HasFactory;
+
 	protected $table = 'users';
 
 	protected $casts = [
+		'id' => 'integer',
+		'rol_id' => 'integer',
 		'email_verified_at' => 'datetime',
-		'is_active' => 'bool',
-		'rol_id' => 'int'
+		'is_active' => 'boolean',
+		'created_at' => 'datetime',
+		'updated_at' => 'datetime'
 	];
 
 	protected $hidden = [
 		'password',
-		'remember_token'
+		'remember_token',
+		'google_id',
 	];
 
 	protected $fillable = [
@@ -59,13 +65,10 @@ class User extends Model
 		'name',
 		'password',
 		'email',
-		'email_verified_at',
-		'is_active',
 		'phone_number',
 		'home_address',
 		'description',
 		'avatar_url',
-		'remember_token',
 		'rol_id',
 		'google_id'
 	];
@@ -77,28 +80,21 @@ class User extends Model
 
 	public function password_reset_token()
 	{
-		return $this->hasOne(PasswordResetToken::class);
+		return $this->hasOne(PasswordResetToken::class, 'user_id');
 	}
 
-	public function registrations()
+	public function courses()
 	{
-		return $this->hasMany(Registration::class);
+		return $this->belongsToMany(Course::class, 'registrations', 'user_id', 'course_id');
 	}
 
-	public function sessions()
+	public function topic_progresses()
 	{
-		return $this->hasMany(Session::class);
+		return $this->hasMany(UserTopicProgress::class, 'user_id');
 	}
 
-	public function subtopics()
+	public function subtopic_progresses()
 	{
-		return $this->belongsToMany(Subtopic::class, 'user_subtopic_progresses')
-					->withPivot('id', 'completed_at');
-	}
-
-	public function topics()
-	{
-		return $this->belongsToMany(Topic::class, 'user_topic_progresses')
-					->withPivot('id', 'completed_at');
+		return $this->hasMany(UserSubtopicProgress::class, 'user_id');
 	}
 }

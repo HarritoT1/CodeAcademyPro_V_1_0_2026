@@ -17,9 +17,6 @@ use Illuminate\Database\Eloquent\Model;
  * @property int $course_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
- * 
- * @property Course $course
- * @property User $user
  *
  * @package App\Models
  */
@@ -28,22 +25,15 @@ class Registration extends Model
 	protected $table = 'registrations';
 
 	protected $casts = [
-		'user_id' => 'int',
-		'course_id' => 'int'
+		'id' => 'integer',
+		'user_id' => 'integer',
+		'course_id' => 'integer',
+		'created_at' => 'datetime',
+		'updated_at' => 'datetime',
 	];
 
 	protected $fillable = [
 		'user_id',
 		'course_id'
 	];
-
-	public function course()
-	{
-		return $this->belongsTo(Course::class);
-	}
-
-	public function user()
-	{
-		return $this->belongsTo(User::class);
-	}
 }

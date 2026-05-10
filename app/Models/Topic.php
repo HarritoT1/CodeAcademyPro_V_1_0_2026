@@ -9,6 +9,7 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class Topic
@@ -22,16 +23,21 @@ use Illuminate\Database\Eloquent\Model;
  * 
  * @property Course $course
  * @property Collection|Subtopic[] $subtopics
- * @property Collection|User[] $users
+ * @property Collection|UserTopicProgress[] $topic_progresses
  *
  * @package App\Models
  */
 class Topic extends Model
 {
+	use HasFactory;
+
 	protected $table = 'topics';
 
 	protected $casts = [
-		'course_id' => 'int'
+		'id' => 'integer',
+		'course_id' => 'integer',
+		'created_at' => 'datetime',
+		'updated_at' => 'datetime'
 	];
 
 	protected $fillable = [
@@ -42,17 +48,16 @@ class Topic extends Model
 
 	public function course()
 	{
-		return $this->belongsTo(Course::class);
+		return $this->belongsTo(Course::class, 'course_id');
 	}
 
 	public function subtopics()
 	{
-		return $this->hasMany(Subtopic::class);
+		return $this->hasMany(Subtopic::class, 'topic_id');
 	}
 
-	public function users()
+	public function topic_progresses()
 	{
-		return $this->belongsToMany(User::class, 'user_topic_progresses')
-					->withPivot('id', 'completed_at');
+		return $this->hasMany(UserTopicProgress::class, 'topic_id');
 	}
 }

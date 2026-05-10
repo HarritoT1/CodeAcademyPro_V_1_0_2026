@@ -21,7 +21,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property Carbon $updated_at
  * 
  * @property Topic $topic
- * @property Collection|User[] $users
+ * @property Collection|UserSubtopicProgress[] $subtopic_progresses
  *
  * @package App\Models
  */
@@ -30,7 +30,10 @@ class Subtopic extends Model
 	protected $table = 'subtopics';
 
 	protected $casts = [
-		'topic_id' => 'int'
+		'id' => 'integer',
+		'topic_id' => 'integer',
+		'created_at' => 'datetime',
+		'updated_at' => 'datetime'
 	];
 
 	protected $fillable = [
@@ -41,12 +44,11 @@ class Subtopic extends Model
 
 	public function topic()
 	{
-		return $this->belongsTo(Topic::class);
+		return $this->belongsTo(Topic::class, 'topic_id');
 	}
 
-	public function users()
+	public function subtopic_progresses()
 	{
-		return $this->belongsToMany(User::class, 'user_subtopic_progresses')
-					->withPivot('id', 'completed_at');
+		return $this->hasMany(UserSubtopicProgress::class, 'subtopic_id');
 	}
 }
