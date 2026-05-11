@@ -1,0 +1,207 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+
+:root {
+  --body-background: linear-gradient(358deg,rgba(121, 4, 217, 1) 0%, rgba(164, 4, 217, 1) 50%, rgba(210, 4, 217, 1) 75%);
+  --button-color: radial-gradient(circle,rgba(121, 4, 217, 1) 0%, rgba(185, 4, 217, 1) 35%, rgba(121, 4, 217, 1) 100%);
+  --extra-color-1: #c57ce1;
+  --extra-color-2: #b9a67b;
+  --extra-color-3: #8f9fb5 ;
+
+  --textfont: 'Inter', Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box !important;
+  font-family: var(--textfont) !important;
+}
+
+html {
+  font-size: 16px !important; /* Definiendo la unidad rem */
+  max-width: 100vw !important;
+  min-height: 100vh !important;
+}
+
+/* Pantallas muy pequeñas (mini móviles) */
+@media (min-width: 320px) {
+  html {
+    font-size: 11px !important;
+    /* 1rem = 11px */
+  }
+}
+
+/* Móviles grandes */
+@media (min-width: 480px) {
+  html {
+    font-size: 13px !important;
+    /* 1rem = 13px */
+  }
+}
+
+/* Tablets */
+@media (min-width: 768px) {
+  html {
+    font-size: 14px !important;
+    /* 1rem = 14px */
+  }
+}
+
+/* Laptops */
+@media (min-width: 992px) {
+  html {
+    font-size: 15px !important;
+    /* 1rem = 15px */
+  }
+}
+
+/* Desktop grande */
+@media (min-width: 1200px) {
+  html {
+    font-size: 16px !important;
+    /* 1rem = 16px */
+  }
+}
+
+/* Desktop extra grande */
+@media (min-width: 1600px) {
+  html {
+    font-size: 18px !important;
+    /* 1rem = 18px */
+  }
+}
+
+.image-responsive {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+a {
+  word-wrap: break-word;
+  /* Permite cortar la palabra si no cabe */
+  overflow-wrap: break-word;
+  /* Más moderno, soportado por la mayoría */
+  white-space: normal;
+  /* Evita que el texto quede en una sola línea */
+  text-decoration: none !important;
+
+  color: var(--extra-color-1) !important;
+}
+
+button.element-animation {
+    background-image: var(--button-color) !important;
+    font-weight: bold !important;
+    border-radius: 5px;
+    border: solid 1.5px var(--extra-color-1) !important;
+    color: white !important;
+}
+
+.element-animation {
+    display: inline-block;
+    filter: blur(0px);
+    padding: 5px;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+
+.element-animation:hover {
+    animation: focus 0.4s ease-in-out forwards;
+    cursor: pointer;
+}
+
+button.element-animation:active {
+    filter: blur(2px);
+    background-image: none !important;
+    color: black !important;
+    background-color: transparent !important;
+}
+
+a.element-animation:active {
+    filter: blur(2px);
+    color: var(--extra-color-3) !important;
+}
+
+@keyframes focus {
+    0% {
+        transform: scale(1);
+        filter: brightness(0.5);
+    }
+
+    50% {
+        transform: scale(1.1);
+        text-shadow: 0px -2px 2px rgba(0,0,0,0.6);
+        filter: brightness(1.5);
+    }
+
+    100% {
+        transform: scale(1);
+        filter: brightness(1);
+    }
+}
+
+.icon-purple {
+    filter: brightness(0) saturate(100%)
+            invert(69%) sepia(31%) saturate(1653%)
+            hue-rotate(228deg) brightness(96%) contrast(90%);
+}
+
+.input-checkbox-color {
+    background-color: transparent !important;
+    border: solid 1.5px var(--extra-color-1) !important;
+    color: white !important;
+}
+
+.input-checkbox-color:checked {
+    background-color: var(--extra-color-1) !important;
+    color: white !important;
+}
+
+div.loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid var(--extra-color-1);
+  border-bottom: 16px solid var(--extra-color-1);
+  width: 120px;
+  height: 120px;
+  animation: spin 2s linear infinite;
+  margin: 50px auto;
+  margin-top: 0 !important;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+iframe {
+  -webkit-box-shadow: -1px 1px 9px 5px #ffffff; 
+  box-shadow: -1px 1px 9px 5px #fdfdfd;
+  border-radius: 5px;
+  max-width: 80%;
+  width: 25rem;
+  height: 15rem;
+}
+
+.table-container{
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.course-cell {
+    padding-left: 1rem;
+    text-align: justify !important;
+    max-width: 30rem;
+
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    white-space: nowrap;
+}
+
+.animation-show {
+    visibility: hidden;
+    opacity: 0;
+    transition: all 1s ease-in-out;
+}
+
+
