@@ -9,20 +9,20 @@
 
   <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- Importante -->
 
-  <title>CodeAcademyPro</title>
+  <title>{{ config('app.name', 'Laravel') }}</title>
 
   <meta name="generator" content="Astro v5.13.2" />
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/modals/" />
 
-  <script src="../js/color-modes.js"></script>
-  <link href="../css/bootstrap.min.css" rel="stylesheet" />
+  <script src="{{ asset('js/color-modes.js') }}"></script>
+  <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
   <meta name="theme-color" content="#712cf9" />
-  <link href="../css/modals.css" rel="stylesheet" />
-  <link rel="shortcut icon" type="image/ico" href="../img/logo.ico" />
-  <link href="../css/globalstyles.css" rel="stylesheet" />
+  <link href="{{ asset('css/modals.css') }}" rel="stylesheet" />
+  <link rel="shortcut icon" type="image/ico" href="{{ asset('img/logo.ico') }}" />
+  <link href="{{ asset('css/globalstyles.css') }}" rel="stylesheet" />
 
-  <script src="../js/globalscripts.js" type="text/javascript"></script>
+  <script src="{{ asset('js/globalscripts.js') }}" type="text/javascript"></script>
 
   <style>
     .bd-placeholder-img {
@@ -237,7 +237,7 @@
     </div>
   </div>
 
-  <script src="../js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
+  <script src="{{ asset('js/bootstrap.bundle.min.js') }}" class="astro-vvvwv3sm"></script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {

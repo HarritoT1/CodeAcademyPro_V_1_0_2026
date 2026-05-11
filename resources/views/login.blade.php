@@ -15,17 +15,17 @@
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/sign-in/" />
 
-  <script src="../js/color-modes.js"></script>
-  <link href="../css/bootstrap.min.css" rel="stylesheet" />
+  <script src="{{ asset('js/color-modes.js') }}"></script>
+  <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
   <meta name="theme-color" content="#712cf9" />
-  <link href="../css/sign-in.css" rel="stylesheet" />
-  <link rel="shortcut icon" type="image/ico" href="../img/logo.ico" />
-  <link href="../css/globalstyles.css" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/particulas.css">
+  <link href="{{ asset('css/sign-in.css') }}" rel="stylesheet" />
+  <link rel="shortcut icon" type="image/ico" href="{{ asset('img/logo.ico') }}" />
+  <link href="{{ asset('css/globalstyles.css') }}" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ asset('css/particulas.css') }}">
 
-  <script src="../js/particulas.js"></script>
+  <script src="{{ asset('js/particulas.js') }}"></script> 
 
-  <script src="../js/globalscripts.js" type="text/javascript"></script>
+  <script src="{{ asset('js/globalscripts.js') }}" type="text/javascript"></script>
 
   <style>
     body {
@@ -202,10 +202,10 @@
     </ul>
   </div>
   <main class="form-signin w-100 m-auto">
-    <form id="login" action="{{ route('') }}" method="post" enctype="application/x-www-form-urlencoded"
+    <form id="login" action="" method="post" enctype="application/x-www-form-urlencoded"
       class="needs-validation" autocomplete="on" novalidate>
       <!-- Agrega el token CSRF @csrf -->
-      <img class="mb-4 image-responsive" src="../img/logo.png" alt="logotipo" style="width: 5rem;" />
+      <img class="mb-4 image-responsive" src="{{ asset('img/logo.png') }}" alt="logotipo" style="width: 5rem;" />
       <h1 class="h5 mb-3 fw-bold text-center">Bienvenido a CodeAcademyPro.com</h1>
       <h3 class="fs-6 text-body-emphasis my-3">Por favor, inicia sesión:</h3>
 
@@ -223,7 +223,7 @@
           placeholder="" value="" />
         <label for="password">Contraseña</label>
         <span onclick="togglePassword()">
-          <img src="../img/eyeclosed.png" alt="toggle_pass" class="imageResponsive icon-purple"
+          <img src="{{ asset('img/eyeclosed.png') }}" alt="toggle_pass" class="imageResponsive icon-purple"
             style="width: 1.2rem; position: absolute; top: 20px; right: 10px; cursor: pointer; border-radius: 100%; background-color: transparent;">
         </span>
         <div class="invalid-feedback">
@@ -252,7 +252,7 @@
 
       <a class="btn my-2 w-100 py-2 element-animation button-google" href="" target="_self" title="Google">
         Continuar con Google
-        <img class="image-responsive d-inline-block ms-1" src="../img/google.png" alt="google" style="width: 1.3rem;" />
+        <img class="image-responsive d-inline-block ms-1" src="{{ asset('img/google.png') }}" alt="google" style="width: 1.3rem;" />
       </a>
 
       <div class="d-flex justify-between flex-row align-items-center my-1 gap-3">
@@ -280,7 +280,7 @@
 
     <div id="burbujas-container"></div>
   </main>
-  <script src="../js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
+  <script src="{{ asset('js/bootstrap.bundle.min.js') }}" class="astro-vvvwv3sm"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       asig_listeners_of_submit_forms();

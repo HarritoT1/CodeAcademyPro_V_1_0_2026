@@ -9,23 +9,24 @@
 
   <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- Importante -->
 
-  <title>CodeAcademyPro</title>
+  <title>{{ config('app.name', 'Laravel') }}</title>
 
   <meta name="generator" content="Astro v5.13.2" />
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-  <script src="../js/color-modes.js"></script>
-  <link href="../css/bootstrap.min.css" rel="stylesheet" />
+  <script src="{{ asset('js/color-modes.js') }}"></script>
+  <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
   <meta name="theme-color" content="#712cf9" />
-  <link href="../css/carousel.css" rel="stylesheet" />
-  <script src="../js/jspdf.umd.min.js"></script>
-  <script src="../js/jsPDF_Generate.js"></script>
+  <link href="{{ asset('css/carousel.css') }}" rel="stylesheet" />
+  <link href="{{ asset('css/product.css') }}" rel="stylesheet" />
+  <script src="{{ asset('js/jspdf.umd.min.js') }}"></script>
+  <script src="{{ asset('js/jsPDF_Generate.js') }}"></script>
 
-  <link href="../css/globalstyles.css" rel="stylesheet" />
-  <script src="../js/globalscripts.js" type="text/javascript"></script>
+  <link href="{{ asset('css/globalstyles.css') }}" rel="stylesheet" />
+  <script src="{{ asset('js/globalscripts.js') }}" type="text/javascript"></script>
 
-  <link rel="shortcut icon" type="image/ico" href="../img/logo.ico" />
+  <link rel="shortcut icon" type="image/ico" href="{{ asset('img/logo.ico') }}" />
 
   <style>
     .bd-placeholder-img {
@@ -137,7 +138,6 @@
       </path>
     </symbol>
   </svg>
-
   <div class="dropdown position-fixed bottom-0 end-0 mb-3 me-3 bd-mode-toggle">
     <button class="btn py-2 dropdown-toggle d-flex align-items-center element-animation" id="bd-theme" type="button"
       aria-expanded="false" data-bs-toggle="dropdown" aria-label="Toggle theme (auto)" style="width: 40px;">
@@ -208,7 +208,7 @@
                 title="Mis cursos">
                 <div style="width: 150px !important;"
                   class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">
-                  <img class="image-responsive" src="../img/miscursos.png" alt="Mis cursos" style="width: 1.8rem;" />
+                  <img class="image-responsive" src="{{ asset('img/miscursos.png') }}" alt="Mis cursos" style="width: 1.8rem;" />
                   Mis cursos
                 </div>
               </a>
@@ -218,7 +218,7 @@
                 title="Más cursos">
                 <div style="width: 150px !important;"
                   class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">
-                  <img class="image-responsive me-md-2" src="../img/cursos.png" alt="Más cursos"
+                  <img class="image-responsive me-md-2" src="{{ asset('img/cursos.png') }}" alt="Más cursos"
                     style="width: 1.8rem;" />
                   Cursos
                 </div>
@@ -229,7 +229,7 @@
                 title="Perfil">
                 <div style="width: 150px !important;"
                   class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">
-                  <img class="image-responsive" src="../img/perfil.png" alt="Mi perfil" style="width: 1.8rem;" />
+                  <img class="image-responsive" src="{{ asset('img/perfil.png') }}" alt="Mi perfil" style="width: 1.8rem;" />
                   @username
                 </div>
               </a>
@@ -239,7 +239,7 @@
                 title="Contacto">
                 <div style="width: 150px !important;"
                   class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">
-                  <img class="image-responsive" src="../img/informacion.png" alt="Contacto" style="width: 1.8rem;" />
+                  <img class="image-responsive" src="{{ asset('img/informacion.png') }}" alt="Contacto" style="width: 1.8rem;" />
                   Contacto
                 </div>
               </a>
@@ -249,7 +249,7 @@
                 title="Salir">
                 <div style="width: 50px !important;"
                   class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">
-                  <img class="image-responsive" src="../img/salida.png" alt="Salir" style="width: 1.8rem;" />
+                  <img class="image-responsive" src="{{ asset('img/salida.png') }}" alt="Salir" style="width: 1.8rem;" />
                 </div>
               </a>
             </li>
@@ -259,143 +259,279 @@
   </nav>
 
   <main>
+    
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-bold">Descubre nuevos cursos aquí e inscribete </h1>
+          <p class="lead text-body-secondary">
+            Busca el curso que necesites:
+          </p>
+          <input type="text" id="buscar" placeholder="Nombre del curso" class="form-control">
 
-    <div class="px-5 mb-5 pb-5">
-      <h1 class="text-center mt-5 mb-5 fw-bold fs-2">
-        CodeAcademyPro.com tiene el soporte <br> de los siguientes colaboradores:
-      </h1>
+          <script>
+            document.getElementById("buscar").addEventListener("keyup", function () {
+              let filtro = this.value.toLowerCase();
+              let cursos = document.querySelectorAll(".curso");
 
-      <div class="container marketing">
-        <div class="row">
-          <div class="col-lg-4">
-            <img src="../img/ing1.png" class="bd-placeholder-img rounded-circle image-responsive mb-3"
-              style="width: 140px; height: 140px;" alt="Ing. Harol Gael Cárdenas Trejo">
+              cursos.forEach(curso => {
+                curso.style.display =
+                  curso.textContent.toLowerCase().includes(filtro)
+                    ? "block" : "none";
+              });
+            });
+          </script>
 
-            <h2 class="fw-normal">Ing. Harol</h2>
-
-            <p>
-              ¡Hola! Encargado del desarrollo Backend de CodeAcademyPro.com
-            </p>
-
-            <p>
-              <button class="btn my-2 px-4 py-2 element-animation"
-                onclick="window.location.href='mailto:firebase.proyect.library@gmail.com'">
-                Contacto
-              </button>
-            </p>
-          </div>
-
-          <div class="col-lg-4">
-            <img src="../img/ing2.jpg" class="bd-placeholder-img rounded-circle image-responsive mb-3"
-              style="width: 140px; height: 140px;" alt="Ing. Karina Sayuri Díaz Martínez">
-
-            <h2 class="fw-normal">Ing. Sayuri</h2>
-
-            <p>
-              ¡Holaaaaaa! ¿Que te parece el Frontend de CodeAcademy.com?
-            </p>
-
-            <p>
-              <button class="btn my-2 px-4 py-2 element-animation"
-                onclick="window.location.href='mailto:firebase.proyect.library@gmail.com'">
-                Contacto
-              </button>
-            </p>
-          </div>
-
-          <div class="col-lg-4">
-            <img src="../img/ing3.jfif" class="bd-placeholder-img rounded-circle image-responsive mb-3"
-              style="width: 140px; height: 140px;" alt="Ing. Japhet León Carmona">
-
-            <h2 class="fw-normal">Ing. Japhet</h2>
-
-            <p>
-              ¡Saludos! Negociaciones y gestión del proyecto CodeAcademyPro.com
-            </p>
-
-            <p>
-              <button class="btn my-2 px-4 py-2 element-animation"
-                onclick="window.location.href='mailto:firebase.proyect.library@gmail.com'">
-                Contacto
-              </button>
-            </p>
-          </div>
         </div>
+      </div>
+    </section>
 
-        <hr class="featurette-divider" />
+    <div class="album py-5" style="background-image: var(--body-background) !important;">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 align-items-stretch px-3 px-sm-0">
 
-        <div class="row featurette justify-content-between">
-          <div class="col-md-6">
-            <h2 class="featurette-heading fw-bold lh-1 mb-4 fs-1">
-              ¿Qué es CodeAcademy.com?
-            </h2>
-            <p class="lead" style="text-align: justify;">
-              Plataforma educativa en línea sin fines de lucro que ofrece cursos de programación con certificaciones
-              completamente gratuitas y sin necesidad de suscripción.
-            </p>
+          <div class="col curso">
+            <div class="card shadow-sm h-100">
+              <img src="{{ asset('img/javascript.png') }}" class="card-img-top" height="225px" alt="@coursename">
+
+              <div class="card-body" style="text-align: justify;">
+
+                <h3 class="fw-bold fs-4 text-center my-2">@JavaScript desde 0 paso a paso</h3>
+
+                <p class="card-text">
+                  Lenguaje de programación que permite agregar interactividad animaciones y dinamismo a las páginas web
+                  modernas.
+                </p>
+
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center p-4">
+                <button class="btn w-50 py-2 element-animation" type="button">
+                  Inscribirme
+                </button>
+                <small class="text-body-secondary fs-5">@5 hrs</small>
+              </div>
+
+            </div>
           </div>
-          <div class="col-md-5">
-            <img src="../img/logo.png" class="featurette-image img-fluid mx-auto image-responsive" width="500"
-              height="500" alt="Logotipo CodeAcademyPro">
+
+          <div class="col curso">
+            <div class="card shadow-sm h-100">
+              <img src="{{ asset('img/c.jpg') }}" class="card-img-top" height="225px" alt="@coursename">
+
+              <div class="card-body" style="text-align: justify;">
+
+                <h3 class="fw-bold fs-4 text-center my-2">@C++ desde 0 paso a paso</h3>
+
+                <p class="card-text">
+                  Lenguaje de programación que permite agregar interactividad animaciones y dinamismo a las páginas web
+                  modernas.
+                </p>
+
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center p-4">
+                <button class="btn w-50 py-2 element-animation" type="button">
+                  Inscribirme
+                </button>
+                <small class="text-body-secondary fs-5">@5 hrs</small>
+              </div>
+
+            </div>
           </div>
+
+          <div class="col curso">
+            <div class="card shadow-sm h-100">
+              <img src="{{ asset('img/php.jpg') }}" class="card-img-top" height="225px" alt="@coursename">
+
+              <div class="card-body" style="text-align: justify;">
+
+                <h3 class="fw-bold fs-4 text-center my-2">@PHP desde 0 paso a paso</h3>
+
+                <p class="card-text">
+                  Lenguaje de programación que permite agregar interactividad animaciones y dinamismo a las páginas web
+                  modernas.
+                </p>
+
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center p-4">
+                <button class="btn w-50 py-2 element-animation" type="button">
+                  Inscribirme
+                </button>
+                <small class="text-body-secondary fs-5">@5 hrs</small>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col curso">
+            <div class="card shadow-sm h-100">
+              <img src="{{ asset('img/python.png') }}" class="card-img-top" height="225px" alt="@coursename">
+
+              <div class="card-body" style="text-align: justify;">
+
+                <h3 class="fw-bold fs-4 text-center my-2">@Python desde 0 paso a paso</h3>
+
+                <p class="card-text">
+                  Lenguaje de programación que permite agregar interactividad animaciones y dinamismo a las páginas web
+                  modernas.
+                </p>
+
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center p-4">
+                <button class="btn w-50 py-2 element-animation" type="button">
+                  Inscribirme
+                </button>
+                <small class="text-body-secondary fs-5">@5 hrs</small>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col curso">
+            <div class="card shadow-sm h-100">
+              <img src="{{ asset('img/java.jpg') }}" class="card-img-top" height="225px" alt="@coursename">
+
+              <div class="card-body" style="text-align: justify;">
+
+                <h3 class="fw-bold fs-4 text-center my-2">@Java desde 0 paso a paso</h3>
+
+                <p class="card-text">
+                  Lenguaje de programación que permite agregar interactividad animaciones y dinamismo a las páginas web
+                  modernas.
+                </p>
+
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center p-4">
+                <button class="btn w-50 py-2 element-animation" type="button">
+                  Inscribirme
+                </button>
+                <small class="text-body-secondary fs-5">@5 hrs</small>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col curso">
+            <div class="card shadow-sm h-100">
+              <img src="{{ asset('img/css3.jpg') }}" class="card-img-top" height="225px" alt="@coursename">
+
+              <div class="card-body" style="text-align: justify;">
+
+                <h3 class="fw-bold fs-4 text-center my-2">@CSS desde 0 paso a paso</h3>
+
+                <p class="card-text">
+                  Lenguaje de programación que permite agregar interactividad animaciones y dinamismo a las páginas web
+                  modernas.
+                </p>
+
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center p-4">
+                <button class="btn w-50 py-2 element-animation" type="button">
+                  Inscribirme
+                </button>
+                <small class="text-body-secondary fs-5">@5 hrs</small>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col curso">
+            <div class="card shadow-sm h-100">
+              <img src="{{ asset('img/curso c.jpg') }}" class="card-img-top" height="225px" alt="@coursename">
+
+              <div class="card-body" style="text-align: justify;">
+
+                <h3 class="fw-bold fs-4 text-center my-2">@C# desde 0 paso a paso</h3>
+
+                <p class="card-text">
+                  Lenguaje de programación que permite agregar interactividad animaciones y dinamismo a las páginas web
+                  modernas.
+                </p>
+
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center p-4">
+                <button class="btn w-50 py-2 element-animation" type="button">
+                  Inscribirme
+                </button>
+                <small class="text-body-secondary fs-5">@5 hrs</small>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col curso">
+            <div class="card shadow-sm h-100">
+              <img src="{{ asset('img/sql.jfif') }}" class="card-img-top" height="225px" alt="@coursename">
+
+              <div class="card-body" style="text-align: justify;">
+
+                <h3 class="fw-bold fs-4 text-center my-2">@SQL desde 0 paso a paso</h3>
+
+                <p class="card-text">
+                  Lenguaje de programación que permite agregar interactividad animaciones y dinamismo a las páginas web
+                  modernas.
+                </p>
+
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center p-4">
+                <button class="btn w-50 py-2 element-animation" type="button">
+                  Inscribirme
+                </button>
+                <small class="text-body-secondary fs-5">@5 hrs</small>
+              </div>
+
+            </div>
+          </div>
+
+          <div class="col curso">
+            <div class="card shadow-sm h-100">
+              <img src="{{ asset('img/html.jpg') }}" class="card-img-top" height="225px" alt="@coursename">
+
+              <div class="card-body" style="text-align: justify;">
+
+                <h3 class="fw-bold fs-4 text-center my-2">@HTML desde 0 paso a paso</h3>
+
+                <p class="card-text">
+                  Lenguaje de programación que permite agregar interactividad animaciones y dinamismo a las páginas web
+                  modernas.
+                </p>
+
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center p-4">
+                <button class="btn w-50 py-2 element-animation" type="button">
+                  Inscribirme
+                </button>
+                <small class="text-body-secondary fs-5">@5 hrs</small>
+              </div>
+
+            </div>
+          </div>
+        
         </div>
-
-        <hr class="featurette-divider" />
-
-        <div class="row featurette justify-content-between">
-          <div class="col-md-6 order-md-2">
-            <h2 class="featurette-heading fw-bold lh-1 mb-4 fs-1 text-md-end mt-5">
-              ¿Qué obtienes en este sitio web?
-            </h2>
-
-            <p class="lead mb-5" style="text-align: justify;">
-              Obtienes certificaciones gratis y aprendizaje autónomo para
-              mejorar tus habilidades como desarrollador de software.
-            </p>
-          </div>
-          <div class="col-md-5 order-md-1">
-            <img src="../img/certificado.png" class="featurette-image img-fluid mx-auto image-responsive" width="500"
-              height="500" alt="Certificado CodeAcademyPro">
-          </div>
-        </div>
-
-        <hr class="featurette-divider" />
-
-        <div class="row featurette justify-content-between">
-          <div class="col-md-6">
-            <h2 class="featurette-heading fw-bold lh-1 mb-4 fs-1 mt-5">
-              ¿Te gustaría acudir al área de trabajo?
-            </h2>
-
-            <p class="lead mb-5" style="text-align: justify;">
-              Aquí te compartimos el croquis de Google Maps de nuestra ubicación.
-            </p>
-          </div>
-          <div class="col-md-5 text-center">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.800639725075!2d-99.00064212574249!3d19.291033945188573!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce1cdb9988f43d%3A0x349f35ed189e88f2!2sInstituto%20Tecnol%C3%B3gico%20de%20Tl%C3%A1huac!5e0!3m2!1ses-419!2smx!4v1777853982207!5m2!1ses-419!2smx"
-              allowfullscreen="" loading="lazy">
-            </iframe>
-          </div>
-        </div>
-
       </div>
     </div>
 
   </main>
 
-  <hr class="mt-5 mb-2 mx-3" style="border: solid 1px white; opacity: 80%;">
 
   <footer class="mx-auto d-flex flex-wrap justify-content-between align-items-center py-5 mb-4 border-top row-gap-3"
-    style="width: 95%; border-top: white solid 2px !important;">
+    style="width: 95%;">
     <div class="col-12 col-md-5 d-flex align-items-center text-center">
-      <img class="image-responsive" src="../img/logo.png" alt="logotipo"
+      <img class="image-responsive" src="{{ asset('img/logo.png') }}" alt="logotipo"
         style="width: 4rem; margin: 0 1rem !important;" />
-      <span class="fw-bold">&copy; Copyright 2025 CodeAcademyPro.com.
+      <span class="text-body-secondary">&copy; Copyright 2025 CodeAcademyPro.com.
         Todos los Derechos Reservados.</span>
     </div>
     <div class="col-12 col-md-4 d-flex align-items-center mt-1">
-      <div class="fw-bold mx-3 ms-md-auto me-md-3 mx-auto">
+      <div class="text-body-secondary mx-3 ms-md-auto me-md-3 mx-auto">
         Contacto:
         <a class="element-animation" href="mailto:firebase.proyect.library@gmail.com" target="_self" title="Contact"
           style="font-size: 1.5rem;">
@@ -404,14 +540,13 @@
       </div>
     </div>
     <div class="col-12 d-flex flex-column align-items-center justify-content-center gap-2">
-      <p class="fw-bold">Nos ubicamos en nuestro centro de desarrollo (visitanos):</p>
+      <p>Nos ubicamos en nuestro centro de desarrollo (visitanos):</p>
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.7829343771746!2d-99.00001985261142!3d19.29180355285376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce1cdb9988f43d%3A0x349f35ed189e88f2!2sInstituto%20Tecnol%C3%B3gico%20de%20Tl%C3%A1huac!5e0!3m2!1ses-419!2smx!4v1777843942256!5m2!1ses-419!2smx"
         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </footer>
-
-  <script src="../js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
+  <script src="{{ asset('js/bootstrap.bundle.min.js') }}" class="astro-vvvwv3sm"></script>
 </body>
 
 </html>

@@ -9,19 +9,19 @@
 
   <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- Importante -->
 
-  <title>CodeAcademyPro</title>
+  <title>{{ config('app.name', 'Laravel') }}</title>
 
   <meta name="generator" content="Astro v5.13.2" />
 
   <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/checkout/" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-  <script src="../js/color-modes.js"></script>
-  <link href="../css/bootstrap.min.css" rel="stylesheet" />
+  <script src="{{ asset('js/color-modes.js') }}"></script>
+  <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
   <meta name="theme-color" content="#712cf9" />
-  <link href="../css/checkout.css" rel="stylesheet" />
-  <link rel="shortcut icon" type="image/ico" href="../img/logo.ico" />
-  <link href="../css/globalstyles.css" rel="stylesheet" />
+  <link href="{{ asset('css/checkout.css') }}" rel="stylesheet" />
+  <link rel="shortcut icon" type="image/ico" href="{{ asset('img/logo.ico') }}" />
+  <link href="{{ asset('css/globalstyles.css') }}" rel="stylesheet" />
 
   <style>
     .bd-placeholder-img {
@@ -184,7 +184,7 @@
   <div class="container">
     <main>
       <div class="pt-5 pb-4 text-center">
-        <img class="mb-4 image-responsive" src="../img/logo.png" alt="logotipo" style="width: 6rem;" />
+        <img class="mb-4 image-responsive" src="{{ asset('img/logo.png') }}" alt="logotipo" style="width: 6rem;" />
         <h1 class="h1 fw-bold my-3">Formulario de registro</h1>
         <p class="fs-5 fw-lighter lh-sm">
           El siguiente formulario te solicitará información personal, al crear tu cuenta,
@@ -195,7 +195,7 @@
         </p>
       </div>
 
-      <a class="element-animation" href="../html/login.html" target="_self" title="Login"
+      <a class="element-animation" href="" target="_self" title="Login"
         style="position: fixed; top: 20px; right: 1.8rem;">Regresar al login</a>
 
       <!-- Modal terms and conditions -->
@@ -270,7 +270,7 @@
       </div>
       <!-- Modal terms and conditions -->
 
-      <!-- Modal mail confirm @if -->
+      <!-- Modal mail confirm if -->
       <div class="modal fade" id="mail_confirm" tabindex="-1">
         <div class="modal-dialog modal-xl">
           <div class="modal-content">
@@ -293,11 +293,11 @@
           </div>
         </div>
       </div>
-      <!-- Modal mail confirm @endif -->
+      <!-- Modal mail confirm endif -->
 
       <div>
         <h4 class="mb-3 h4">Información personal:</h4>
-        <form id="create_user" action="{{ route('') }}" method="post" enctype="multipart/form-data"
+        <form id="create_user" action="" method="post" enctype="multipart/form-data"
           class="needs-validation" autocomplete="on" novalidate>
           <div class="row g-3">
 
@@ -401,7 +401,7 @@
             <div class="col-12 text-center mt-4">
               <label for="avatar_url" class="form-label">Añade una foto de perfil <span
                   class="text-warning">(opcional)</span></label>
-              <img id="preview" src="../img/default-avatar.png" alt="Profile preview"
+              <img id="preview" src="{{ asset('img/default-avatar.png') }}" alt="Profile preview"
                 style="border-radius: 100%; width: 200px !important; height: 200px !important;"
                 class="image-responsive my-2" title="Foto de perfil" />
               <br>
@@ -431,7 +431,7 @@
   <footer class="mx-auto d-flex flex-wrap justify-content-between align-items-center py-3 mb-4 border-top"
     style="width: 95%;">
     <div class="col-12 col-md-5 d-flex align-items-center text-center">
-      <img class="image-responsive" src="../img/logo.png" alt="logotipo"
+      <img class="image-responsive" src="{{ asset('img/logo.png') }}" alt="logotipo"
         style="width: 4rem; margin: 0 1rem !important;" />
       <span class="text-body-secondary">&copy; Copyright 2025 CodeAcademyPro.com.
         Todos los Derechos Reservados.</span>
@@ -453,16 +453,16 @@
       document.getElementById('password')?.addEventListener('input', matchPasswords);
       document.getElementById('confirm_password')?.addEventListener('input', matchPasswords);
 
-      //@if($registro_exitoso)
+      //if($registro_exitoso)
       const modal = new bootstrap.Modal(document.getElementById('mail_confirm'));
       modal.show();
-      //@endif
+      //endif
     });
   </script>
 
-  <script src="../js/bootstrap.bundle.min.js"></script>
-  <script src="../js/globalscripts.js" type="text/javascript"></script>
-  <script src="../js/checkout.js" class="astro-vvvwv3sm"></script>
+  <script src="{{ asset('js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('js/globalscripts.js') }}" type="text/javascript"></script>
+  <script src="{{ asset('js/checkout.js') }}" class="astro-vvvwv3sm"></script>
 
 </body>
 

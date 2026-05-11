@@ -9,28 +9,28 @@
 
     <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- Importante -->
 
-    <title>CodeAcademyPro</title>
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
     <meta name="generator" content="Astro v5.13.2" />
 
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-    <script src="../js/color-modes.js"></script>
-    <link href="../css/bootstrap.min.css" rel="stylesheet" />
+    <script src="{{ asset('js/color-modes.js') }}"></script>
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
     <meta name="theme-color" content="#712cf9" />
-    <link href="../css/carousel.css" rel="stylesheet" />
-    <link href="../css/product.css" rel="stylesheet" />
-    <script src="../js/jspdf.umd.min.js"></script>
-    <script src="../js/jsPDF_Generate.js"></script>
+    <link href="{{ asset('css/carousel.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/product.css') }}" rel="stylesheet" />
+    <script src="{{ asset('js/jspdf.umd.min.js') }}"></script>
+    <script src="{{ asset('js/jsPDF_Generate.js') }}"></script>
 
-    <link href="../css/globalstyles.css" rel="stylesheet" />
-    <script src="../js/globalscripts.js" type="text/javascript"></script>
+    <link href="{{ asset('css/globalstyles.css') }}" rel="stylesheet" />
+    <script src="{{ asset('js/globalscripts.js') }}" type="text/javascript"></script>
 
-    <link rel="shortcut icon" type="image/ico" href="../img/logo.ico" />
+    <link rel="shortcut icon" type="image/ico" href="{{ asset('img/logo.ico') }}" />
 
-    <link href="../css/checkout.css" rel="stylesheet" />
+    <link href="{{ asset('css/checkout.css') }}" rel="stylesheet" />
 
-    <script src="../js/checkout.js" class="astro-vvvwv3sm"></script>
+    <script src="{{ asset('js/checkout.js') }}" class="astro-vvvwv3sm"></script>
 
     <style>
         .bd-placeholder-img {
@@ -231,7 +231,7 @@
                                 target="_self" title="Mis cursos">
                                 <div style="width: 150px !important;"
                                     class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">
-                                    <img class="image-responsive" src="../img/miscursos.png" alt="Mis cursos"
+                                    <img class="image-responsive" src="{{ asset('img/miscursos.png') }}" alt="Mis cursos"
                                         style="width: 1.8rem;" />
                                     Mis cursos
                                 </div>
@@ -242,7 +242,7 @@
                                 target="_self" title="Más cursos">
                                 <div style="width: 150px !important;"
                                     class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">
-                                    <img class="image-responsive me-md-2" src="../img/cursos.png" alt="Más cursos"
+                                    <img class="image-responsive me-md-2" src="{{ asset('img/cursos.png') }}" alt="Más cursos"
                                         style="width: 1.8rem;" />
                                     Cursos
                                 </div>
@@ -253,7 +253,7 @@
                                 target="_self" title="Perfil">
                                 <div style="width: 150px !important;"
                                     class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">
-                                    <img class="image-responsive" src="../img/perfil.png" alt="Mi perfil"
+                                    <img class="image-responsive" src="{{ asset('img/perfil.png') }}" alt="Mi perfil"
                                         style="width: 1.8rem;" />
                                     @username
                                 </div>
@@ -264,7 +264,7 @@
                                 target="_self" title="Contacto">
                                 <div style="width: 150px !important;"
                                     class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">
-                                    <img class="image-responsive" src="../img/informacion.png" alt="Contacto"
+                                    <img class="image-responsive" src="{{ asset('img/informacion.png') }}" alt="Contacto"
                                         style="width: 1.8rem;" />
                                     Contacto
                                 </div>
@@ -275,7 +275,7 @@
                                 target="_self" title="Salir">
                                 <div style="width: 50px !important;"
                                     class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">
-                                    <img class="image-responsive" src="../img/salida.png" alt="Salir"
+                                    <img class="image-responsive" src="{{ asset('img/salida.png') }}" alt="Salir"
                                         style="width: 1.8rem;" />
                                 </div>
                             </a>
@@ -291,7 +291,7 @@
 
             <div class="row g-5 justify-content-between" id="update_form">
                 <div class="col-md-5 order-md-last">
-                    <img id="preview" src="../img/ing1.png" alt="Profile preview"
+                    <img id="preview" src="{{ asset('img/ing1.png') }}" alt="Profile preview"
                         style="border-radius: 100%; width: 200px !important; height: 200px !important;"
                         class="image-responsive my-2 preview-img" title="Foto de perfil" />
                     <br>
@@ -315,7 +315,7 @@
                 <div class="col-md-7">
                     <h4 class="mb-3 fw-bold">Información personal:</h4>
 
-                    <form id="update" action="{{ route('') }}" method="post" enctype="multipart/form-data"
+                    <form id="update" action="" method="post" enctype="multipart/form-data"
                         class="needs-validation" autocomplete="on" novalidate>
                         <!-- @method('PUT') -->
 
@@ -444,7 +444,7 @@
                                 <td>15%</td>
 
                                 <td>
-                                    <img src="../img/start.png" alt="Start course" width="30" height="30"
+                                    <img src="{{ asset('img/start.png') }}" alt="Start course" width="30" height="30"
                                         title="Iniciado">
                                 </td>
                             </tr>
@@ -459,7 +459,7 @@
                                 <td>48%</td>
 
                                 <td>
-                                    <img src="../img/progreso.png" alt="Course progress" width="30" height="30"
+                                    <img src="{{ asset('img/progreso.png') }}" alt="Course progress" width="30" height="30"
                                         title="En progreso">
                                 </td>
                             </tr>
@@ -474,7 +474,7 @@
                                 <td>100%</td>
 
                                 <td>
-                                    <img src="../img/trofeo.png" alt="Completed course" width="30" height="30"
+                                    <img src="{{ asset('img/trofeo.png') }}" alt="Completed course" width="30" height="30"
                                         title="Completado">
                                 </td>
                             </tr>
@@ -489,7 +489,7 @@
                                 <td>62%</td>
 
                                 <td>
-                                    <img src="../img/progreso.png" alt="Course progress" width="30" height="30"
+                                    <img src="{{ asset('img/progreso.png') }}" alt="Course progress" width="30" height="30"
                                         title="En progreso">
                                 </td>
                             </tr>
@@ -504,7 +504,7 @@
                                 <td>5%</td>
 
                                 <td>
-                                    <img src="../img/start.png" alt="Start course" width="30" height="30"
+                                    <img src="{{ asset('img/start.png') }}" alt="Start course" width="30" height="30"
                                         title="Iniciado">
                                 </td>
                             </tr>
@@ -519,7 +519,7 @@
                                 <td>81%</td>
 
                                 <td>
-                                    <img src="../img/progreso.png" alt="Course progress" width="30" height="30"
+                                    <img src="{{ asset('img/progreso.png') }}" alt="Course progress" width="30" height="30"
                                         title="En progreso">
                                 </td>
                             </tr>
@@ -534,7 +534,7 @@
                                 <td>100%</td>
 
                                 <td>
-                                    <img src="../img/trofeo.png" alt="Completed course" width="30" height="30"
+                                    <img src="{{ asset('img/trofeo.png') }}" alt="Completed course" width="30" height="30"
                                         title="Completado">
                                 </td>
                             </tr>
@@ -549,7 +549,7 @@
                                 <td>37%</td>
 
                                 <td>
-                                    <img src="../img/progreso.png" alt="Course progress" width="30" height="30"
+                                    <img src="{{ asset('img/progreso.png') }}" alt="Course progress" width="30" height="30"
                                         title="En progreso">
                                 </td>
                             </tr>
@@ -573,7 +573,7 @@
     <footer class="mx-auto d-flex flex-wrap justify-content-between align-items-center py-5 mb-4 border-top row-gap-3"
         style="width: 95%; border-top: white solid 2px !important;">
         <div class="col-12 col-md-5 d-flex align-items-center text-center">
-            <img class="image-responsive" src="../img/logo.png" alt="logotipo"
+            <img class="image-responsive" src="{{ asset('img/logo.png') }}" alt="logotipo"
                 style="width: 4rem; margin: 0 1rem !important;" />
             <span class="fw-bold">&copy; Copyright 2025 CodeAcademyPro.com.
                 Todos los Derechos Reservados.</span>
@@ -595,7 +595,7 @@
         </div>
     </footer>
 
-    <script src="../js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
+    <script src="{{ asset('js/bootstrap.bundle.min.js') }}" class="astro-vvvwv3sm"></script>
 </body>
 
 </html>

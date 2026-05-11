@@ -9,26 +9,26 @@
 
   <meta name="csrf-token" content="{{ csrf_token() }}"> <!-- Importante -->
 
-  <title>CodeAcademyPro</title>
-
+  <title>{{ config('app.name', 'Laravel') }}</title>
+  
   <meta name="generator" content="Astro v5.13.2" />
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-  <script src="../js/color-modes.js"></script>
-  <link href="../css/bootstrap.min.css" rel="stylesheet" />
+  <script src="{{ asset('js/color-modes.js') }}"></script>
+  <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
   <meta name="theme-color" content="#712cf9" />
 
-  <link href="../css/globalstyles.css" rel="stylesheet" />
-  <script src="../js/globalscripts.js" type="text/javascript"></script>
+  <link href="{{ asset('css/globalstyles.css') }}" rel="stylesheet" />
+  <script src="{{ asset('js/globalscripts.js') }}" type="text/javascript"></script>
 
-  <link href="../css/dashboard.css" rel="stylesheet" />
+  <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet" />
 
-  <link rel="shortcut icon" type="image/ico" href="../img/logo.ico" />
+  <link rel="shortcut icon" type="image/ico" href="{{ asset('img/logo.ico') }}" />
 
-  <link rel="stylesheet" href="../css/sidebars.css">
+  <link rel="stylesheet" href="{{ asset('css/sidebars.css') }}">
 
-  <script src="../js/sidebars.js"></script>
+  <script src="{{ asset('js/sidebars.js') }}"></script>
 
   <link href="https://cdn.jsdelivr.net/npm/prismjs/themes/prism-tomorrow.min.css" rel="stylesheet" />
 
@@ -275,7 +275,7 @@
   <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
     <a class="d-flex align-items-center navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#body"
       target="_self" title="Subir">
-      <img src="../img/logo.png" alt="CodeAcademyPro.com" width="25" height="25"
+      <img src="{{ asset('img/logo.png') }}" alt="CodeAcademyPro.com" width="25" height="25"
         class="me-2 d-inline-block align-text-top">
       CodeAcademyPro.com
     </a>
@@ -299,7 +299,7 @@
           aria-labelledby="sidebarMenuLabel">
           <div class="offcanvas-header">
             <h5 class="offcanvas-title fw-bold d-flex align-items-center" id="sidebarMenuLabel">
-              <img src="../img/logo.png" alt="CodeAcademyPro.com" width="25" height="25"
+              <img src="{{ asset('img/logo.png') }}" alt="CodeAcademyPro.com" width="25" height="25"
                 class="me-2 d-inline-block align-text-top">
               CodeAcademyPro.com
             </h5>
@@ -307,7 +307,7 @@
               aria-label="Close"></button>
           </div>
 
-          <img src="../img/sql.jfif" alt="CodeAcademyPro.com" width="150" class="my-4 image-responsive rounded">
+          <img src="{{ asset('img/sql.jfif') }}" alt="CodeAcademyPro.com" width="150" class="my-4 image-responsive rounded">
 
           <hr class="my-3">
 
@@ -419,7 +419,7 @@
             <li class="w-100">
               <a class="w-100 nav-link fw-bold element-animation text-body" href="" target="_self" title="Mis cursos">
                 <div class="w-100 d-flex flex-nowrap column-gap-1 justify-content-start align-items-center">
-                  <img class="image-responsive" src="../img/miscursos.png" alt="Mis cursos"
+                  <img class="image-responsive" src="{{ asset('img/miscursos.png') }}" alt="Mis cursos"
                     style="width: 1.8rem; margin: 0 10px !important;" />
                   Mis cursos
                 </div>
@@ -428,7 +428,7 @@
             <li class="w-100">
               <a class="w-100 nav-link fw-bold element-animation text-body" href="" target="_self" title="Más cursos">
                 <div class="w-100 d-flex flex-nowrap column-gap-1 justify-content-start align-items-center">
-                  <img class="image-responsive" src="../img/cursos.png" alt="Más cursos"
+                  <img class="image-responsive" src="{{ asset('img/cursos.png') }}" alt="Más cursos"
                     style="width: 1.8rem; margin: 0 10px !important;" />
                   Cursos
                 </div>
@@ -437,7 +437,7 @@
             <li class="w-100">
               <a class="w-100 nav-link fw-bold element-animation text-body" href="" target="_self" title="Perfil">
                 <div class="w-100 d-flex flex-nowrap column-gap-1 justify-content-start align-items-center">
-                  <img class="image-responsive" src="../img/perfil.png" alt="Mi perfil"
+                  <img class="image-responsive" src="{{ asset('img/perfil.png') }}" alt="Mi perfil"
                     style="width: 1.8rem; margin: 0 10px !important;" />
                   @username
                 </div>
@@ -446,7 +446,7 @@
             <li class="w-100">
               <a class="w-100 nav-link fw-bold element-animation text-body" href="" target="_self" title="Contacto">
                 <div class="w-100 d-flex flex-nowrap column-gap-1 justify-content-start align-items-center">
-                  <img class="image-responsive" src="../img/informacion.png" alt="Contacto"
+                  <img class="image-responsive" src="{{ asset('img/informacion.png') }}" alt="Contacto"
                     style="width: 1.8rem; margin: 0 10px !important;" />
                   Contacto
                 </div>
@@ -460,7 +460,7 @@
             <li class="w-100">
               <a class="w-100 nav-link fw-bold element-animation text-body" href="" target="_self" title="Salir">
                 <div class="w-100 d-flex flex-nowrap column-gap-1 justify-content-start align-items-center">
-                  <img class="image-responsive" src="../img/salida.png" alt="Salir"
+                  <img class="image-responsive" src="{{ asset('img/salida.png') }}" alt="Salir"
                     style="width: 1.8rem; margin: 0 10px !important;" />
                 </div>
               </a>
@@ -520,7 +520,7 @@
     </div>
   </div>
 
-  <script src="../js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
+  <script src="{{ asset('js/bootstrap.bundle.min.js') }}" class="astro-vvvwv3sm"></script>
 
   <script src="https://cdn.jsdelivr.net/npm/prismjs/prism.min.js"></script>
 

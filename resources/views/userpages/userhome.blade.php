@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en" data-bs-theme="auto">
+<html lang="es" data-bs-theme="auto">
 
 <head>
   <meta charset="utf-8" />
@@ -15,18 +15,18 @@
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
 
-  <script src="../js/color-modes.js"></script>
-  <link href="../css/bootstrap.min.css" rel="stylesheet" />
+  <script src="{{ asset('js/color-modes.js') }}"></script>
+  <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet" />
   <meta name="theme-color" content="#712cf9" />
-  <link href="../css/carousel.css" rel="stylesheet" />
-  <link href="../css/product.css" rel="stylesheet" />
-  <script src="../js/jspdf.umd.min.js"></script>
-  <script src="../js/jsPDF_Generate.js"></script>
+  <link href="{{ asset('css/carousel.css') }}" rel="stylesheet" />
+  <link href="{{ asset('css/product.css') }}" rel="stylesheet" />
+  <script src="{{ asset('js/jspdf.umd.min.js') }}"></script>
+  <script src="{{ asset('js/jsPDF_Generate.js') }}"></script>
 
-  <link href="../css/globalstyles.css" rel="stylesheet" />
-  <script src="../js/globalscripts.js" type="text/javascript"></script>
+  <link href="{{ asset('css/globalstyles.css') }}" rel="stylesheet" />
+  <script src="{{ asset('js/globalscripts.js') }}" type="text/javascript"></script>
 
-  <link rel="shortcut icon" type="image/ico" href="../img/logo.ico" />
+  <link rel="shortcut icon" type="image/ico" href="{{ asset('img/logo.ico') }}" />
 
   <style>
     .bd-placeholder-img {
@@ -114,7 +114,7 @@
   </style>
 </head>
 
-<body id="body">
+<body style="background-image: var(--body-background) !important;" id="body">
   <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
     <symbol id="check2" viewBox="0 0 16 16">
       <path
@@ -185,6 +185,24 @@
       </li>
     </ul>
   </div>
+  <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
+    <symbol id="aperture" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+      stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="12" cy="12" r="10"></circle>
+      <path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83m13.79-4l-5.74 9.94">
+      </path>
+    </symbol>
+    <symbol id="cart" viewBox="0 0 16 16">
+      <path
+        d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .49.598l-1 5a.5.5 0 0 1-.465.401l-9.397.472L4.415 11H13a.5.5 0 0 1 0 1H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5zM3.102 4l.84 4.479 9.144-.459L13.89 4H3.102zM5 12a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm7 0a2 2 0 1 0 0 4 2 2 0 0 0 0-4zm-7 1a1 1 0 1 1 0 2 1 1 0 0 1 0-2zm7 0a1 1 0 1 1 0 2 1 1 0 0 1 0-2z">
+      </path>
+    </symbol>
+    <symbol id="chevron-right" viewBox="0 0 16 16">
+      <path fill-rule="evenodd"
+        d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z">
+      </path>
+    </symbol>
+  </svg>
 
   <nav class="navbar navbar-expand-md bg-dark sticky-top border-bottom" data-bs-theme="dark">
     <div class="container">
@@ -208,7 +226,7 @@
                 title="Mis cursos">
                 <div style="width: 150px !important;"
                   class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">
-                  <img class="image-responsive" src="../img/miscursos.png" alt="Mis cursos" style="width: 1.8rem;" />
+                  <img class="image-responsive" src="{{ asset('img/miscursos.png') }}" alt="Mis cursos" style="width: 1.8rem;" />
                   Mis cursos
                 </div>
               </a>
@@ -218,7 +236,7 @@
                 title="Más cursos">
                 <div style="width: 150px !important;"
                   class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">
-                  <img class="image-responsive me-md-2" src="../img/cursos.png" alt="Más cursos"
+                  <img class="image-responsive me-md-2" src="{{ asset('img/cursos.png') }}" alt="Más cursos"
                     style="width: 1.8rem;" />
                   Cursos
                 </div>
@@ -229,7 +247,7 @@
                 title="Perfil">
                 <div style="width: 150px !important;"
                   class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">
-                  <img class="image-responsive" src="../img/perfil.png" alt="Mi perfil" style="width: 1.8rem;" />
+                  <img class="image-responsive" src="{{ asset('img/perfil.png') }}" alt="Mi perfil" style="width: 1.8rem;" />
                   @username
                 </div>
               </a>
@@ -239,7 +257,7 @@
                 title="Contacto">
                 <div style="width: 150px !important;"
                   class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">
-                  <img class="image-responsive" src="../img/informacion.png" alt="Contacto" style="width: 1.8rem;" />
+                  <img class="image-responsive" src="{{ asset('img/informacion.png') }}" alt="Contacto" style="width: 1.8rem;" />
                   Contacto
                 </div>
               </a>
@@ -249,7 +267,7 @@
                 title="Salir">
                 <div style="width: 50px !important;"
                   class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">
-                  <img class="image-responsive" src="../img/salida.png" alt="Salir" style="width: 1.8rem;" />
+                  <img class="image-responsive" src="{{ asset('img/salida.png') }}" alt="Salir" style="width: 1.8rem;" />
                 </div>
               </a>
             </li>
@@ -259,279 +277,110 @@
   </nav>
 
   <main>
-    
-    <section class="py-5 text-center container">
-      <div class="row py-lg-5">
-        <div class="col-lg-6 col-md-8 mx-auto">
-          <h1 class="fw-bold">Descubre nuevos cursos aquí e inscribete </h1>
-          <p class="lead text-body-secondary">
-            Busca el curso que necesites:
-          </p>
-          <input type="text" id="buscar" placeholder="Nombre del curso" class="form-control">
 
-          <script>
-            document.getElementById("buscar").addEventListener("keyup", function () {
-              let filtro = this.value.toLowerCase();
-              let cursos = document.querySelectorAll(".curso");
+    <div>
+      <div class="position-relative overflow-hidden p-3 p-md-5 mb-md-3 text-center bg-body-tertiary text-white"
+        style="background-image: url('{{ asset('img/banner.gif') }}'); background-size: cover">
+        <div class="col-md-7 p-lg-5 mx-md-auto my-5 mx-1">
+          <h1 class="display-4 fw-bold">Bienvenido @username, aquí puedes acceder a tus cursos. </h1>
+          <h3 class="fw-normal text-muted mb-3" style="color: white !important;">
+            Puedes visualizar el porcentaje de avance en cada curso.
+          </h3>
 
-              cursos.forEach(curso => {
-                curso.style.display =
-                  curso.textContent.toLowerCase().includes(filtro)
-                    ? "block" : "none";
-              });
-            });
-          </script>
-
+          <div class="d-flex gap-3 justify-content-center lead fw-normal">
+            <a class="icon-link element-animation" href="" target="_self" title="Más cursos">
+              Más cursos
+              <svg class="bi" aria-hidden="true">
+                <use xlink:href="#chevron-right"></use>
+              </svg>
+            </a>
+          </div>
         </div>
       </div>
-    </section>
 
-    <div class="album py-5" style="background-image: var(--body-background) !important;">
-      <div class="container">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4 align-items-stretch px-3 px-sm-0">
+      <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+        <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
+          style="outline: 3px solid white;">
+          <a class="my-3 py-3 element-animation text-body" href="" target="_self" title="Ir al curso">
+            <h2 class="display-5 fw-bold">Curso: @coursename</h2>
+            <p class="lead">@%</p>
+          </a>
 
-          <div class="col curso">
-            <div class="card shadow-sm h-100">
-              <img src="../img/javascript.png" class="card-img-top" height="225px" alt="@coursename">
-
-              <div class="card-body" style="text-align: justify;">
-
-                <h3 class="fw-bold fs-4 text-center my-2">@JavaScript desde 0 paso a paso</h3>
-
-                <p class="card-text">
-                  Lenguaje de programación que permite agregar interactividad animaciones y dinamismo a las páginas web
-                  modernas.
-                </p>
-
-              </div>
-
-              <div class="d-flex justify-content-between align-items-center p-4">
-                <button class="btn w-50 py-2 element-animation" type="button">
-                  Inscribirme
-                </button>
-                <small class="text-body-secondary fs-5">@5 hrs</small>
-              </div>
-
-            </div>
+          <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+            <a class="element-animation"
+              style="height: 100% !important; width: 20rem !important; background: url('{{ asset('img/js.png') }}') no-repeat center / contain;"
+              href="" target="_self" title="Ir al curso"></a>
           </div>
+        </div>
 
-          <div class="col curso">
-            <div class="card shadow-sm h-100">
-              <img src="../img/c++.jpg" class="card-img-top" height="225px" alt="@coursename">
+        <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
+          style="outline: 3px solid white;">
+          <a class="my-3 py-3 element-animation text-body" href="" target="_self" title="Ir al curso">
+            <h2 class="display-5 fw-bold">Curso: @coursename</h2>
+            <p class="lead">@%</p>
+          </a>
 
-              <div class="card-body" style="text-align: justify;">
-
-                <h3 class="fw-bold fs-4 text-center my-2">@C++ desde 0 paso a paso</h3>
-
-                <p class="card-text">
-                  Lenguaje de programación que permite agregar interactividad animaciones y dinamismo a las páginas web
-                  modernas.
-                </p>
-
-              </div>
-
-              <div class="d-flex justify-content-between align-items-center p-4">
-                <button class="btn w-50 py-2 element-animation" type="button">
-                  Inscribirme
-                </button>
-                <small class="text-body-secondary fs-5">@5 hrs</small>
-              </div>
-
-            </div>
+          <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+            <a class="element-animation"
+              style="height: 100% !important; width: 20rem !important; background: url('{{ asset('img/c.png') }}') no-repeat center / contain;"
+              href="" target="_self" title="Ir al curso"></a>
           </div>
-
-          <div class="col curso">
-            <div class="card shadow-sm h-100">
-              <img src="../img/php.jpg" class="card-img-top" height="225px" alt="@coursename">
-
-              <div class="card-body" style="text-align: justify;">
-
-                <h3 class="fw-bold fs-4 text-center my-2">@PHP desde 0 paso a paso</h3>
-
-                <p class="card-text">
-                  Lenguaje de programación que permite agregar interactividad animaciones y dinamismo a las páginas web
-                  modernas.
-                </p>
-
-              </div>
-
-              <div class="d-flex justify-content-between align-items-center p-4">
-                <button class="btn w-50 py-2 element-animation" type="button">
-                  Inscribirme
-                </button>
-                <small class="text-body-secondary fs-5">@5 hrs</small>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col curso">
-            <div class="card shadow-sm h-100">
-              <img src="../img/python.png" class="card-img-top" height="225px" alt="@coursename">
-
-              <div class="card-body" style="text-align: justify;">
-
-                <h3 class="fw-bold fs-4 text-center my-2">@Python desde 0 paso a paso</h3>
-
-                <p class="card-text">
-                  Lenguaje de programación que permite agregar interactividad animaciones y dinamismo a las páginas web
-                  modernas.
-                </p>
-
-              </div>
-
-              <div class="d-flex justify-content-between align-items-center p-4">
-                <button class="btn w-50 py-2 element-animation" type="button">
-                  Inscribirme
-                </button>
-                <small class="text-body-secondary fs-5">@5 hrs</small>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col curso">
-            <div class="card shadow-sm h-100">
-              <img src="../img/java.jpg" class="card-img-top" height="225px" alt="@coursename">
-
-              <div class="card-body" style="text-align: justify;">
-
-                <h3 class="fw-bold fs-4 text-center my-2">@Java desde 0 paso a paso</h3>
-
-                <p class="card-text">
-                  Lenguaje de programación que permite agregar interactividad animaciones y dinamismo a las páginas web
-                  modernas.
-                </p>
-
-              </div>
-
-              <div class="d-flex justify-content-between align-items-center p-4">
-                <button class="btn w-50 py-2 element-animation" type="button">
-                  Inscribirme
-                </button>
-                <small class="text-body-secondary fs-5">@5 hrs</small>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col curso">
-            <div class="card shadow-sm h-100">
-              <img src="../img/css3.jpg" class="card-img-top" height="225px" alt="@coursename">
-
-              <div class="card-body" style="text-align: justify;">
-
-                <h3 class="fw-bold fs-4 text-center my-2">@CSS desde 0 paso a paso</h3>
-
-                <p class="card-text">
-                  Lenguaje de programación que permite agregar interactividad animaciones y dinamismo a las páginas web
-                  modernas.
-                </p>
-
-              </div>
-
-              <div class="d-flex justify-content-between align-items-center p-4">
-                <button class="btn w-50 py-2 element-animation" type="button">
-                  Inscribirme
-                </button>
-                <small class="text-body-secondary fs-5">@5 hrs</small>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col curso">
-            <div class="card shadow-sm h-100">
-              <img src="../img/curso c.jpg" class="card-img-top" height="225px" alt="@coursename">
-
-              <div class="card-body" style="text-align: justify;">
-
-                <h3 class="fw-bold fs-4 text-center my-2">@C# desde 0 paso a paso</h3>
-
-                <p class="card-text">
-                  Lenguaje de programación que permite agregar interactividad animaciones y dinamismo a las páginas web
-                  modernas.
-                </p>
-
-              </div>
-
-              <div class="d-flex justify-content-between align-items-center p-4">
-                <button class="btn w-50 py-2 element-animation" type="button">
-                  Inscribirme
-                </button>
-                <small class="text-body-secondary fs-5">@5 hrs</small>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col curso">
-            <div class="card shadow-sm h-100">
-              <img src="../img/sql.jfif" class="card-img-top" height="225px" alt="@coursename">
-
-              <div class="card-body" style="text-align: justify;">
-
-                <h3 class="fw-bold fs-4 text-center my-2">@SQL desde 0 paso a paso</h3>
-
-                <p class="card-text">
-                  Lenguaje de programación que permite agregar interactividad animaciones y dinamismo a las páginas web
-                  modernas.
-                </p>
-
-              </div>
-
-              <div class="d-flex justify-content-between align-items-center p-4">
-                <button class="btn w-50 py-2 element-animation" type="button">
-                  Inscribirme
-                </button>
-                <small class="text-body-secondary fs-5">@5 hrs</small>
-              </div>
-
-            </div>
-          </div>
-
-          <div class="col curso">
-            <div class="card shadow-sm h-100">
-              <img src="../img/html.jpg" class="card-img-top" height="225px" alt="@coursename">
-
-              <div class="card-body" style="text-align: justify;">
-
-                <h3 class="fw-bold fs-4 text-center my-2">@HTML desde 0 paso a paso</h3>
-
-                <p class="card-text">
-                  Lenguaje de programación que permite agregar interactividad animaciones y dinamismo a las páginas web
-                  modernas.
-                </p>
-
-              </div>
-
-              <div class="d-flex justify-content-between align-items-center p-4">
-                <button class="btn w-50 py-2 element-animation" type="button">
-                  Inscribirme
-                </button>
-                <small class="text-body-secondary fs-5">@5 hrs</small>
-              </div>
-
-            </div>
-          </div>
-        
         </div>
       </div>
+
+      <div class="d-md-flex flex-md-equal w-100 my-md-3 ps-md-3">
+        <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
+          style="outline: 3px solid white;">
+          <a class="my-3 py-3 element-animation text-body" href="" target="_self" title="Ir al curso">
+            <h2 class="display-5 fw-bold">Curso: @coursename</h2>
+            <p class="lead">@%</p>
+          </a>
+
+          <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+            <a class="element-animation"
+              style="height: 100% !important; width: 20rem !important; background: url('{{ asset('img/python.png') }}') no-repeat center / contain;"
+              href="" target="_self" title="Ir al curso"></a>
+          </div>
+        </div>
+
+        <div class="bg-body-tertiary me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
+          style="outline: 3px solid white;">
+          <a class="mt-3 pt-3 element-animation text-body pb-0" href="" target="_self" title="Ir al curso">
+            <h2 class="display-5 fw-bold">Curso: @coursename</h2>
+            <p class="lead d-flex flex-row justify-content-center gap-1 my-1">
+              <img class="image-responsive" src="{{ asset('img/trofeo.png') }}" alt="Completado:"
+                style="width: 2rem; margin: 0 0 !important">100%
+            </p>
+          </a>
+
+          <!-- if Termino el curso -->
+          <a class="element-animation d-block p-0 mb-3 btnCertificado" title="Generar certificado" onclick="generateCertificate('course_id')">Obtener certificado</a>
+          <!-- if Termino el curso -->
+
+          <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+            <a class="element-animation"
+              style="height: 100% !important; width: 20rem !important; background: url('{{ asset('img/java.webp') }}') no-repeat center / contain;"
+              href="" target="_self" title="Ir al curso"></a>
+          </div>
+        </div>
+      </div>
+
     </div>
 
   </main>
 
+  <hr class="mt-5 mb-2 mx-3" style="border: solid 1px white; opacity: 80%;">
 
   <footer class="mx-auto d-flex flex-wrap justify-content-between align-items-center py-5 mb-4 border-top row-gap-3"
-    style="width: 95%;">
+    style="width: 95%; border-top: white solid 2px !important;">
     <div class="col-12 col-md-5 d-flex align-items-center text-center">
-      <img class="image-responsive" src="../img/logo.png" alt="logotipo"
+      <img class="image-responsive" src="{{ asset('img/logo.png') }}" alt="logotipo"
         style="width: 4rem; margin: 0 1rem !important;" />
-      <span class="text-body-secondary">&copy; Copyright 2025 CodeAcademyPro.com.
+      <span class="fw-bold">&copy; Copyright 2025 CodeAcademyPro.com.
         Todos los Derechos Reservados.</span>
     </div>
     <div class="col-12 col-md-4 d-flex align-items-center mt-1">
-      <div class="text-body-secondary mx-3 ms-md-auto me-md-3 mx-auto">
+      <div class="fw-bold mx-3 ms-md-auto me-md-3 mx-auto">
         Contacto:
         <a class="element-animation" href="mailto:firebase.proyect.library@gmail.com" target="_self" title="Contact"
           style="font-size: 1.5rem;">
@@ -540,13 +389,15 @@
       </div>
     </div>
     <div class="col-12 d-flex flex-column align-items-center justify-content-center gap-2">
-      <p>Nos ubicamos en nuestro centro de desarrollo (visitanos):</p>
+      <p class="fw-bold">Nos ubicamos en nuestro centro de desarrollo (visitanos):</p>
       <iframe
         src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3765.7829343771746!2d-99.00001985261142!3d19.29180355285376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85ce1cdb9988f43d%3A0x349f35ed189e88f2!2sInstituto%20Tecnol%C3%B3gico%20de%20Tl%C3%A1huac!5e0!3m2!1ses-419!2smx!4v1777843942256!5m2!1ses-419!2smx"
         allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </footer>
-  <script src="../js/bootstrap.bundle.min.js" class="astro-vvvwv3sm"></script>
+  
+  <script src="{{ asset('js/bootstrap.bundle.min.js') }}" class="astro-vvvwv3sm"></script>
+
 </body>
 
 </html>
