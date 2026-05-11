@@ -8,6 +8,7 @@ namespace App\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 /**
  * Class UserTopicProgress
@@ -24,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class UserTopicProgress extends Model
 {
+	use HasFactory;
+	
 	protected $table = 'user_topic_progresses';
 	
 	public $timestamps = false;
