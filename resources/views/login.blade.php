@@ -202,16 +202,17 @@
     </ul>
   </div>
   <main class="form-signin w-100 m-auto">
-    <form id="login" action="" method="post" enctype="application/x-www-form-urlencoded"
+    <form id="login" action="{{ route('authenticate.login') }}" method="post" enctype="application/x-www-form-urlencoded"
       class="needs-validation" autocomplete="on" novalidate>
-      <!-- Agrega el token CSRF @csrf -->
+      @csrf <!-- Importante para proteger contra CSRF -->
+
       <img class="mb-4 image-responsive" src="{{ asset('img/logo.png') }}" alt="logotipo" style="width: 5rem;" />
       <h1 class="h5 mb-3 fw-bold text-center">Bienvenido a CodeAcademyPro.com</h1>
       <h3 class="fs-6 text-body-emphasis my-3">Por favor, inicia sesión:</h3>
 
       <div class="form-floating mb-2">
         <input type="text" maxlength="255" required class="form-control" id="name" name="name" placeholder=""
-          value="" />
+          value="{{ old('name') }}" />
         <label for="name">Nombre de usuario</label>
         <div class="invalid-feedback">
           Ingresa un usuario válido.
@@ -240,6 +241,22 @@
       <button class="btn my-2 w-100 py-2 element-animation" type="submit">
         Iniciar sesión
       </button>
+
+      @if($errors->any())
+        @foreach ($errors->all() as $error)
+          <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert" style="text-align: center">
+            {{ $error }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close me-2"></button>
+          </div>
+        @endforeach
+      @endif
+
+      @if (session('status'))
+        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert" style="text-align: center">
+          {{ session('status') }}
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close me-2"></button>
+        </div>
+      @endif
 
       <div class="d-flex justify-between flex-row align-items-center my-1 gap-3">
         <div class="w-50">

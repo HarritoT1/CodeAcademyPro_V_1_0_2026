@@ -227,10 +227,10 @@
                     <ul class="navbar-nav flex-grow-1 justify-content-between align-items-center">
 
                         <li class="nav-item">
-                            <a class="nav-link fw-bold element-animation" href="" style="color: white !important;"
+                            <a class="nav-link fw-bold element-animation" href="{{ route('dashboard') }}" style="color: white !important;"
                                 target="_self" title="Mis cursos">
                                 <div style="width: 150px !important;"
-                                    class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">
+                                    class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block" id="op1">
                                     <img class="image-responsive" src="{{ asset('img/miscursos.png') }}" alt="Mis cursos"
                                         style="width: 1.8rem;" />
                                     Mis cursos
@@ -238,32 +238,32 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fw-bold element-animation" href="" style="color: white !important;"
+                            <a class="nav-link fw-bold element-animation" href="{{ route('newcourses') }}" style="color: white !important;"
                                 target="_self" title="Más cursos">
                                 <div style="width: 150px !important;"
-                                    class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">
-                                    <img class="image-responsive me-md-2" src="{{ asset('img/cursos.png') }}" alt="Más cursos"
+                                    class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block" id="op2">
+                                    <img class="image-responsive me-md-1" src="{{ asset('img/cursos.png') }}" alt="Más cursos"
                                         style="width: 1.8rem;" />
                                     Cursos
                                 </div>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fw-bold element-animation" href="" style="color: white !important;"
+                            <a class="nav-link fw-bold element-animation" href="{{ route('user', ['user' => Auth::id()]) }}" style="color: white !important;"
                                 target="_self" title="Perfil">
                                 <div style="width: 150px !important;"
-                                    class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">
+                                    class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block" id="op3">
                                     <img class="image-responsive" src="{{ asset('img/perfil.png') }}" alt="Mi perfil"
                                         style="width: 1.8rem;" />
-                                    @username
+                                    {{ Auth::user()->name }}
                                 </div>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fw-bold element-animation" href="" style="color: white !important;"
+                            <a class="nav-link fw-bold element-animation" href="{{ route('contact') }}" style="color: white !important;"
                                 target="_self" title="Contacto">
                                 <div style="width: 150px !important;"
-                                    class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">
+                                    class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block" id="op4">
                                     <img class="image-responsive" src="{{ asset('img/informacion.png') }}" alt="Contacto"
                                         style="width: 1.8rem;" />
                                     Contacto
@@ -271,7 +271,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link fw-bold element-animation" href="" style="color: white !important;"
+                            <a class="nav-link fw-bold element-animation" href="{{ route('deauthentication.logout') }}" style="color: white !important;"
                                 target="_self" title="Salir">
                                 <div style="width: 50px !important;"
                                     class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block">

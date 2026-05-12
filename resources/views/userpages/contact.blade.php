@@ -1,5 +1,11 @@
 @extends('userpages.layout')
 @section('content')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById("op4").style.color = "rgba(185, 4, 217, 1)";
+        });
+    </script>
+
     <div class="px-5 mb-5 pb-5">
         <h1 class="text-center mt-5 mb-5 fw-bold fs-2">
             CodeAcademyPro.com tiene el soporte <br> de los siguientes colaboradores:
