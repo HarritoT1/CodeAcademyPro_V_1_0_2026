@@ -22,7 +22,7 @@ Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('au
 
 Route::get('/deauthentication', [LoginController::class, 'logout'])->name('deauthentication.logout');
 
-// Mecanismos de OAuth con Google. --------------------------------
+// Mecanismos de OAuth 2.0 con Google. --------------------------------
 
 Route::get('/auth/google/redirect', function () {
     return Socialite::driver('google')->redirect();
@@ -102,6 +102,10 @@ Route::delete('/usernew/cancel', [UserController::class, 'destroy'])->middleware
 Route::get('/userpassword', function () {
     return view('userpassword'); // http://127.0.0.1:8000/userpassword
 })->name("userpassword");
+
+Route::post('/userpassword', [UserController::class, 'requestCode'])->name("userpassword.code");
+
+Route::put('/userpassword', [UserController::class, 'updatePassword'])->name("userpassword.update");
 
 /************************************************************************************************/
 

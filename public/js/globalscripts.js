@@ -82,7 +82,7 @@ async function request_code() {
     }
 
     try {
-        /*const response = await fetch('/userpassword/recovery', {
+        const response = await fetch('/userpassword', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -90,13 +90,13 @@ async function request_code() {
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
             },
             body: JSON.stringify({ 'email': email })
-        });*/
+        });
 
         // Simulación de respuesta exitosa.
-        const response = {
+        /*const response = {
             ok: true,
-            json: async () => ({ message: 'Código de restablecimiento enviado a su correo electrónico.', attemps: 1 }),
-        };
+            json: async () => ({ message: 'Código de restablecimiento enviado a su correo electrónico.', attempts: 1 }),
+        };*/
 
         // Simulación de respuesta fallida. Ej: que el email no exista.
         /*const response = {
@@ -113,7 +113,7 @@ async function request_code() {
             document.getElementById('code_request_button')?.setAttribute('disabled', '');
             document.getElementById('email')?.setAttribute('disabled', '');
 
-            document.getElementById('attempts').textContent = `${data.attemps}`;
+            document.getElementById('attempts').textContent = `${data.attempts}`;
             return;
         } else {
             alert(data.message);
@@ -211,7 +211,7 @@ async function validate_response_code() {
         // Simulación de respuesta fallida. Ej: código incorrecto.
         /*const response = {
             ok: false,
-            json: async () => ({ message: 'El código es incorrecto.', attemps: 1 })
+            json: async () => ({ message: 'El código es incorrecto.', attempts: 1 })
         };*/
 
         const data = await response.json();
@@ -229,7 +229,7 @@ async function validate_response_code() {
         } else {
             alert(data.message);
             if (data.attemps > 0) {
-                document.getElementById('attempts').textContent = `${data.attemps}`;
+                document.getElementById('attempts').textContent = `${data.attempts}`;
                 document.getElementById('code_hash').value = '';
                 document.getElementById('loader_circle')?.classList?.add('d-none');
                 document.getElementById('code_hash')?.classList?.remove('is-invalid');

@@ -28,7 +28,6 @@ class PasswordResetToken extends Model
     protected $fillable = [
         'user_id',
         'code_hash',
-        'attempts',
         'expires_at',
     ];
 
