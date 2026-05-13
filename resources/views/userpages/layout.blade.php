@@ -231,7 +231,7 @@
                                 target="_self" title="Mis cursos">
                                 <div style="width: 150px !important;"
                                     class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block" id="op1">
-                                    <img class="image-responsive" src="{{ asset('img/miscursos.png') }}" alt="Mis cursos"
+                                    <img class="image-responsive me-md-1" src="{{ asset('img/miscursos.png') }}" alt="Mis cursos"
                                         style="width: 1.8rem;" />
                                     Mis cursos
                                 </div>
@@ -253,8 +253,8 @@
                                 target="_self" title="Perfil">
                                 <div style="width: 150px !important;"
                                     class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block" id="op3">
-                                    <img class="image-responsive" src="{{ asset('img/perfil.png') }}" alt="Mi perfil"
-                                        style="width: 1.8rem;" />
+                                    <img class="image-responsive rounded-circle me-md-1" src="{{ asset('storage/' . Auth::user()->avatar_url) }}" alt="Mi perfil"
+                                        style="width: 2rem; height: 2rem;" />
                                     {{ Auth::user()->name }}
                                 </div>
                             </a>
@@ -264,7 +264,7 @@
                                 target="_self" title="Contacto">
                                 <div style="width: 150px !important;"
                                     class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block" id="op4">
-                                    <img class="image-responsive" src="{{ asset('img/informacion.png') }}" alt="Contacto"
+                                    <img class="image-responsive me-md-1" src="{{ asset('img/informacion.png') }}" alt="Contacto"
                                         style="width: 1.8rem;" />
                                     Contacto
                                 </div>

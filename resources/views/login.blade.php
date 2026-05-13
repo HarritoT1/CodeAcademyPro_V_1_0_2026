@@ -281,13 +281,13 @@
         </div>
       </div>
 
-      <a class="element-animation" href="" target="_self" title="Password recovery">
+      <a class="element-animation" href="{{ route("userpassword") }}" target="_self" title="Password recovery">
         Recuperar contraseña
       </a>
 
       <br>
 
-      <a class="element-animation" href="" target="_self" title="Create a new account">
+      <a class="element-animation" href="{{ route("usernew") }}" target="_self" title="Create a new account">
         Crear una cuenta nueva
       </a>
 
