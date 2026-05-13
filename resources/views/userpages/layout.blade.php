@@ -248,12 +248,20 @@
                                 </div>
                             </a>
                         </li>
+                        @php
+                            $auth_user_avatar_url = '';
+                            if (str_starts_with(Auth::user()->avatar_url, 'https://lh3.googleusercontent.com/')) {
+                                $auth_user_avatar_url = Auth::user()->avatar_url;
+                            } else {
+                                $auth_user_avatar_url = asset('storage/' . Auth::user()->avatar_url);
+                            }
+                        @endphp
                         <li class="nav-item">
                             <a class="nav-link fw-bold element-animation" href="{{ route('user', ['user' => Auth::id()]) }}" style="color: white !important;"
                                 target="_self" title="Perfil">
                                 <div style="width: 150px !important;"
                                     class="d-md-flex flex-nowrap column-gap-1 align-items-center d-block" id="op3">
-                                    <img class="image-responsive rounded-circle me-md-1" src="{{ asset('storage/' . Auth::user()->avatar_url) }}" alt="Mi perfil"
+                                    <img class="image-responsive rounded-circle me-md-1" src="{{ $auth_user_avatar_url }}" alt="Mi perfil"
                                         style="width: 2rem; height: 2rem;" />
                                     {{ Auth::user()->name }}
                                 </div>

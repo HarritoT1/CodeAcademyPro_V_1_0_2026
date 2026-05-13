@@ -11,6 +11,7 @@ use App\Models\Role;
 use App\Http\Requests\UserStoreRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Auth\Events\Registered;
 
 class UserController extends Controller
 {
@@ -61,6 +62,8 @@ class UserController extends Controller
             }
 
             $user = User::create($data);
+
+            event(new Registered($user));
 
             Auth::login($user);
 

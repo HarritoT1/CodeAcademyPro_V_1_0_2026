@@ -267,7 +267,7 @@
         </div>
       </div>
 
-      <a class="btn my-2 w-100 py-2 element-animation button-google" href="" target="_self" title="Google">
+      <a class="btn my-2 w-100 py-2 element-animation button-google" href="{{ route('auth.redirect') }}" target="_self" title="Google">
         Continuar con Google
         <img class="image-responsive d-inline-block ms-1" src="{{ asset('img/google.png') }}" alt="google" style="width: 1.3rem;" />
       </a>

@@ -1,7 +1,7 @@
 @extends('userpages.layout')
 @section('content')
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             document.getElementById("op3").style.color = "rgba(185, 4, 217, 1)";
         });
     </script>
@@ -11,7 +11,15 @@
 
         <div class="row g-5 justify-content-between" id="update_form">
             <div class="col-md-5 order-md-last">
-                <img id="preview" src="{{ asset('storage/' . $user->avatar_url) }}" alt="Profile preview"
+                @php
+                    $current_user_avatar_url = '';
+                    if (str_starts_with($user->avatar_url, 'https://lh3.googleusercontent.com/')) {
+                        $current_user_avatar_url = $user->avatar_url;
+                    } else {
+                        $current_user_avatar_url = asset('storage/' . $user->avatar_url);
+                    }
+                @endphp
+                <img id="preview" src="{{ $current_user_avatar_url }}" alt="Profile preview"
                     style="border-radius: 100%; width: 200px !important; height: 200px !important;"
                     class="image-responsive my-2 preview-img" title="Foto de perfil" />
                 <br>
@@ -47,8 +55,8 @@
                         <!-- required if user don´t have a google_id  -->
                         <div class="col-sm-6">
                             <label for="fullname" class="form-label">Nombre completo</label>
-                            <input type="text" maxlength="255" class="form-control" id="fullname"
-                                name="fullname" placeholder="" value="{{ $user->fullname }}" disabled @required($user->google_id === null) />
+                            <input type="text" maxlength="255" class="form-control" id="fullname" name="fullname"
+                                placeholder="" value="{{ $user->fullname }}" disabled @required($user->google_id === null) />
                             <div class="invalid-feedback">
                                 Ingrese su nombre completo.
                             </div>
@@ -84,9 +92,10 @@
                                 @if ($user->google_id !== null)
                                     <option value="" @selected($user->rol_id === null)>Ninguno</option>
                                 @endif
-                                    
+
                                 @forelse ($roles as $rol)
-                                    <option value="{{ $rol->id }}" @selected($user->rol_id == $rol->id)>{{ $rol->role_name }}</option>
+                                    <option value="{{ $rol->id }}" @selected($user->rol_id == $rol->id)>{{ $rol->role_name }}
+                                    </option>
                                 @empty
                                     <option value="" selected>Ninguno</option>
                                 @endforelse
@@ -101,9 +110,9 @@
 
                         <div class="col-sm-6">
                             <label for="phone_number" class="form-label">Número de telefono</label>
-                            <input type="tel" maxlength="20" pattern="^[0-9]{2}-[0-9]{4}-[0-9]{4}$"
-                                class="form-control" id="phone_number" name="phone_number" placeholder=""
-                                value="{{ $user->phone_number }}" disabled @required($user->google_id === null) />
+                            <input type="tel" maxlength="20" pattern="^[0-9]{2}-[0-9]{4}-[0-9]{4}$" class="form-control"
+                                id="phone_number" name="phone_number" placeholder="" value="{{ $user->phone_number }}"
+                                disabled @required($user->google_id === null) />
                             <div class="invalid-feedback">
                                 Por favor, ingresa un número de teléfono válido.
                             </div>
@@ -113,8 +122,8 @@
 
                         <div class="col-12">
                             <label for="home_address" class="form-label">Domicilio</label>
-                            <input type="text" class="form-control" id="home_address" name="home_address"
-                                placeholder="" value="{{ $user->home_address }}" disabled @required($user->google_id === null) />
+                            <input type="text" class="form-control" id="home_address" name="home_address" placeholder=""
+                                value="{{ $user->home_address }}" disabled @required($user->google_id === null) />
                             <div class="invalid-feedback">
                                 Por favor, ingresa tu dirección.
                             </div>
@@ -176,13 +185,13 @@
                                 <td>
                                     @if ($course->progress === 100)
                                         <img src="{{ asset('img/trofeo.png') }}" alt="Completed course" width="30"
-                                        height="30" title="Completado">
+                                            height="30" title="Completado">
                                     @elseif ($course->progress > 0 && $course->progress < 100)
                                         <img src="{{ asset('img/progreso.png') }}" alt="Course progress" width="30"
-                                        height="30" title="En progreso">
+                                            height="30" title="En progreso">
                                     @else
-                                        <img src="{{ asset('img/start.png') }}" alt="Start course" width="30" 
-                                        height="30" title="Iniciado">
+                                        <img src="{{ asset('img/start.png') }}" alt="Start course" width="30"
+                                            height="30" title="Iniciado">
                                     @endif
                                 </td>
                             </tr>

@@ -307,9 +307,20 @@
                             </div>
 
                             <div class="modal-footer">
+                                <form action="{{ route('verification.send') }}" method="post" class="border-end">
+                                    @csrf
+                                    <input type="submit" class="btn element-animation py-2 px-3" value="Reenviar correo de verificación de email">
+                                </form>
                                 <a class="element-animation" onclick="cancelRegistration()" title="Cancel">Cancelar
                                     registro de cuenta</a>
                             </div>
+
+                            @if (session('message'))
+                                <div class="alert alert-success alert-dismissible fade show mt-3 mx-auto" role="alert" style="text-align: center; width: 95%">
+                                  {{ session('message') }}
+                                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close me-2"></button>
+                                </div>
+                            @endif
 
                         </div>
                     </div>

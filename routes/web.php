@@ -8,20 +8,54 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Course;
 use App\Models\Role;
 use App\Models\User;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
+use Laravel\Socialite\Socialite;
 
 Route::get('/', function () {
     return view('login'); // http://127.0.0.1:8000/ 
 })->name('login'); // Asigna un nombre a la ruta para redirecciones.
 
-// Mecanismos de login y logout.
+// Mecanismos de login y logout. --------------------------------
 
 Route::post('/authenticate', [LoginController::class, 'authenticate'])->name('authenticate.login');
 
 Route::get('/deauthentication', [LoginController::class, 'logout'])->name('deauthentication.logout');
 
-// Mecanismos de login y logout.
+// Mecanismos de OAuth con Google. --------------------------------
 
-Route::middleware(['auth'])->group(function () { // Protege la ruta con autenticación.
+Route::get('/auth/google/redirect', function () {
+    return Socialite::driver('google')->redirect();
+})->name('auth.redirect');
+
+Route::get('/auth/google/callback', function () {
+
+    try {
+        $googleUser = Socialite::driver('google')->user();
+
+        $user_old = User::where('email', $googleUser->getEmail())->first();
+
+        $user = User::updateOrCreate([
+            'email' => $googleUser->getEmail(),
+        ], [
+            'google_id' => $googleUser->getId(),
+            'name' => $user_old?->name ?? $googleUser->getName(),
+            'email_verified_at' => $user_old?->email_verified_at ?? now(),
+            'avatar_url' => $googleUser->getAvatar(),
+        ]);
+
+        Auth::login($user, true);
+
+        return redirect()->route('dashboard');
+
+    } catch (\Throwable $th) {
+        return redirect()->route('login')->withErrors(['google' => 'Error al iniciar sesión con Google' . $th->getMessage()]);
+    }
+})->name('auth.callback');
+
+// Rutas protegidas. --------------------------------
+
+Route::middleware(['auth', 'verified'])->group(function () { // Protege la ruta con autenticación.
 
     Route::get('/usercourses', [UserController::class, 'index'])->name('dashboard'); // http://127.0.0.1:8000/usercourses
 
@@ -34,9 +68,7 @@ Route::middleware(['auth'])->group(function () { // Protege la ruta con autentic
     Route::get('/user/{user}', [UserController::class, 'show'])->name('user')->where('user', '[0-9]+'); // http://127.0.0.1:8000/user/{id} - Asegura que el ID sea un número entero.
 });
 
-Route::get('/userpassword', function () {
-    return view('userpassword'); // http://127.0.0.1:8000/userpassword
-})->name("userpassword");
+// Creación de usuarios. --------------------------------
 
 Route::get('/usernew/{user?}', function ($user = null) {
     if ($user) $user = User::find($user);
@@ -45,16 +77,34 @@ Route::get('/usernew/{user?}', function ($user = null) {
 
 Route::post('/usernew', [UserController::class, 'store'])->name("usernew.store");
 
+Route::get('/email/verify', function () {
+    return view('usernew', ['roles' => Role::all(), 'user' => Auth::user()]);
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/usercourses');
+})->middleware(['auth', 'signed'])->name('verification.verify');
+
+Route::post('/email/verification-notification', function (Request $request) {
+    $request->user()->sendEmailVerificationNotification();
+
+    return back()->with('message', '¡Email de verificación enviado!');
+})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
 
+
+
+
+
+
+Route::get('/userpassword', function () {
+    return view('userpassword'); // http://127.0.0.1:8000/userpassword
+})->name("userpassword");
 
 
 
 Route::get('/course', function () {
     return view('userpages.course'); // http://127.0.0.1:8000/course
 });
-
-
-
-
-
