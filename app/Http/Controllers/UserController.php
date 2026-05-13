@@ -78,5 +78,29 @@ class UserController extends Controller
 
         return redirect()->route('usernew', ['user' => $user->id])->with('success', 'El usuario se ha creado exitosamente.');
     }
+
+    public function destroy(Request $request) {
+        try {
+            $user = Auth::user();
+
+            Auth::logout();
+
+            $request->session()->invalidate();
+
+            $request->session()->regenerateToken();
+
+            $path = $user->avatar_url;
+
+            if (isset($path)) {
+                Storage::disk('public')->delete($path);
+            }
+
+            $user->delete();
+
+            return response()->json(['message' => 'El usuario se ha eliminado exitosamente (Registro cancelado).'], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'No se pudo cancelar el registro. Por favor, inténtelo de nuevo: ' . $th->getMessage() . '.'], 500);
+        }
+    }
 }
  

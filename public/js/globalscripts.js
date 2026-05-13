@@ -295,14 +295,14 @@ async function cancelRegistration() {
         console.log('Registro de cuenta cancelado por el usuario.');
 
         try {
-            /*const response = await fetch('/usernew/cancel', {
+            const response = await fetch('/usernew/cancel', {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
                     'Accept': 'application/json',
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
                 },
-            });*/
+            });
 
             // Simulación de respuesta exitosa.
             /*const response = {
@@ -311,20 +311,20 @@ async function cancelRegistration() {
             };*/
 
             // Simulación de respuesta fallida.
-            const response = {
+            /*const response = {
                 ok: false,
                 json: async () => ({ message: 'No se pudo cancelar el registro. Por favor, inténtelo de nuevo.' }),
-            };
+            };*/
 
             const data = await response.json();
 
             if (response.ok) {
                 alert(data.message);
-                window.location.href = 'http://127.0.0.1:8000/';
+                window.location.href = 'http://codeacademypro.edu:8000/';
                 return;
             }
             else {
-                alert(data.message);
+                alert(`${data.message} Necesitas estar autenticado para cancelar el registro.`);
                 return;
             }
         } catch (error) {

@@ -93,17 +93,17 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', '¡Email de verificación enviado!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
+// Eliminación de usuarios. --------------------------------
 
+Route::delete('/usernew/cancel', [UserController::class, 'destroy'])->middleware('auth')->name("usernew.destroy");
 
-
-
-
+// Recuperar contraseña de usuarios. --------------------------------
 
 Route::get('/userpassword', function () {
     return view('userpassword'); // http://127.0.0.1:8000/userpassword
 })->name("userpassword");
 
-
+/************************************************************************************************/
 
 Route::get('/course', function () {
     return view('userpages.course'); // http://127.0.0.1:8000/course

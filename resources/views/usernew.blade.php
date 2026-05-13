@@ -309,16 +309,19 @@
                             <div class="modal-footer">
                                 <form action="{{ route('verification.send') }}" method="post" class="border-end">
                                     @csrf
-                                    <input type="submit" class="btn element-animation py-2 px-3" value="Reenviar correo de verificación de email">
+                                    <input type="submit" class="btn element-animation py-2 px-3"
+                                        value="Reenviar correo de verificación de email">
                                 </form>
                                 <a class="element-animation" onclick="cancelRegistration()" title="Cancel">Cancelar
                                     registro de cuenta</a>
                             </div>
 
                             @if (session('message'))
-                                <div class="alert alert-success alert-dismissible fade show mt-3 mx-auto" role="alert" style="text-align: center; width: 95%">
-                                  {{ session('message') }}
-                                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close me-2"></button>
+                                <div class="alert alert-success alert-dismissible fade show mt-3 mx-auto"
+                                    role="alert" style="text-align: center; width: 95%">
+                                    {{ session('message') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close me-2"></button>
                                 </div>
                             @endif
 
@@ -514,8 +517,8 @@
             document.getElementById('confirm_password')?.addEventListener('input', matchPasswords);
 
             @if ($user !== null && $user->email_verified_at === null)
-              const modal = new bootstrap.Modal(document.getElementById('mail_confirm'));
-              modal.show();
+                const modal = new bootstrap.Modal(document.getElementById('mail_confirm'));
+                modal.show();
             @endif
         });
     </script>
