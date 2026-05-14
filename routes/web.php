@@ -26,7 +26,7 @@ Route::get('/deauthentication', [LoginController::class, 'logout'])->name('deaut
 
 Route::get('/auth/google/redirect', function () {
     return Socialite::driver('google')->redirect();
-})->name('auth.redirect');
+})->name('auth.redirect'); 
 
 Route::get('/auth/google/callback', function () {
 
@@ -55,15 +55,13 @@ Route::get('/auth/google/callback', function () {
 
 // Rutas protegidas. --------------------------------
 
-Route::middleware(['auth', 'verified'])->group(function () { // Protege la ruta con autenticación.
+Route::middleware(['auth', 'verified'])->group(function () { // Protege la ruta con autenticación y verificación.
 
     Route::get('/usercourses', [UserController::class, 'index'])->name('dashboard'); // http://127.0.0.1:8000/usercourses
 
     Route::get('/contact', function () {
         return view('userpages.contact', ['user' => Auth::user()]); // http://127.0.0.1:8000/contact
     })->name('contact'); // Asigna un nombre a la ruta para redirecciones.
-
-    Route::get('/newcourses', [CourseController::class, 'index'])->name('newcourses'); // http://127.0.0.1:8000/newcourses
 
     Route::get('/user/{user}', [UserController::class, 'show'])->name('user')->where('user', '[0-9]+'); // http://127.0.0.1:8000/user/{id} - Asegura que el ID sea un número entero.
 
@@ -111,8 +109,17 @@ Route::post('/userpassword/validate', [UserController::class, 'validateCode'])->
 
 Route::put('/userpasword/reset', [UserController::class, 'resetPassword'])->name("userpassword.reset");
 
-/************************************************************************************************/
 
-Route::get('/course', function () {
-    return view('userpages.course'); // http://127.0.0.1:8000/course
+/************************************************************************************************ CURSOS ***************************************************************************************/
+
+Route::middleware(['auth'])->group(function () { // Protege la ruta con autenticación.
+
+    Route::get('/newcourses', [CourseController::class, 'index'])->name('newcourses'); // http://127.0.0.1:8000/newcourses
+
+    Route::post('/newcourses/{course}', [CourseController::class, 'inscription'])->name('newcourses.inscription')->where('course', '[0-9]+'); 
+
+    Route::get('/course', function () {
+        return view('userpages.course'); // http://127.0.0.1:8000/course
+    });
+
 });

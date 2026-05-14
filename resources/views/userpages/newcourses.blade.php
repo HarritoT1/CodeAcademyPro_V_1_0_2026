@@ -1,7 +1,7 @@
 @extends('userpages.layout')
 @section('content')
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             document.getElementById("op2").style.color = "rgba(185, 4, 217, 1)";
         });
     </script>
@@ -14,6 +14,22 @@
                     Busca el curso que necesites:
                 </p>
                 <input type="text" id="buscar" placeholder="Nombre del curso" class="form-control">
+
+                @if($errors->any())
+                    @foreach ($errors->all() as $error)
+                    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert" style="text-align: center">
+                        {{ $error }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close me-2"></button>
+                    </div>
+                    @endforeach
+                @endif
+
+                @if (session('success'))
+                    <div class="alert alert-success alert-dismissible fade show mt-3" role="alert" style="text-align: center">
+                    {{ session('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close me-2"></button>
+                    </div>
+                @endif
 
                 <script>
                     document.getElementById("buscar").addEventListener("keyup", function() {
@@ -39,29 +55,35 @@
                     <p class="w-100 text-center fs-2 fw-bold lh-base text-warning">¡Ups no hay cursos nuevos por el momento!</p>
                 @else
                     @foreach ($newcourses as $course)
-                        <div class="col curso">
-                            <div class="card shadow-sm h-100">
-                                <img src="{{ asset('storage/' . $course->image_url) }}" class="card-img-top" height="225px"
-                                    alt="{{ $course->course_name }}">
+                        @if ($course->is_visible)
+                            <div class="col curso">
+                                <div class="card shadow-sm h-100">
+                                    <img src="{{ asset('storage/' . $course->image_url) }}" class="card-img-top" height="225px"
+                                        alt="{{ $course->course_name }}">
 
-                                <div class="card-body" style="text-align: justify;">
+                                    <div class="card-body" style="text-align: justify;">
 
-                                    <h3 class="fw-bold fs-4 text-center my-2">{{ $course->course_name }}</h3>
+                                        <h3 class="fw-bold fs-4 text-center my-2">{{ $course->course_name }}</h3>
 
-                                    <p class="card-text">
-                                        {{ $course->description }}
-                                    </p>
+                                        <p class="card-text">
+                                            {{ $course->description }}
+                                        </p>
 
-                                </div>
+                                    </div>
 
-                                <div class="d-flex justify-content-between align-items-center p-4">
-                                    <button class="btn w-50 py-2 element-animation" type="button">
-                                        Inscribirme
-                                    </button>
-                                    <small class="text-body-secondary fs-5">{{ $course->duration }} hrs</small>
+                                    <div class="d-flex justify-content-between align-items-center p-4">
+                                        <form action="{{ route('newcourses.inscription', ['course' => $course->id]) }}"
+                                            method="post" class="w-50">
+                                            @csrf
+                                            <button class="btn w-100 py-2 element-animation" type="submit">
+                                                Inscribirme
+                                            </button>
+                                        </form>
+                                        <small class="text-body-secondary fs-5">{{ $course->duration }} hrs</small>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
                     @endforeach
                 @endempty
             </div>
