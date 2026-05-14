@@ -12,13 +12,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->truncateTables(['roles', 'users', 'password_reset_tokens', 'courses', 'topics', 'subtopics', 'registrations', 'user_topic_progresses', 'user_subtopic_progresses']);
+        //$this->truncateTables(['roles', 'users', 'password_reset_tokens', 'courses', 'topics', 'subtopics', 'registrations', 'user_topic_progresses', 'user_subtopic_progresses']);
+        $this->truncateTables(['roles', 'users', 'password_reset_tokens', 'registrations', 'user_topic_progresses', 'user_subtopic_progresses']);
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(PasswordResetTokenSeeder::class);
-        $this->call(CourseSeeder::class);
-        $this->call(TopicSeeder::class);
-        $this->call(SubtopicSeeder::class);
+        //$this->call(CourseSeeder::class);
+        //$this->call(TopicSeeder::class);
+        //$this->call(SubtopicSeeder::class);
         $this->call(RegistrationSeeder::class);
         $this->call(UserTopicProgressSeeder::class);
         $this->call(UserSubtopicProgressSeeder::class);

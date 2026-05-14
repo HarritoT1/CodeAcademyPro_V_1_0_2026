@@ -334,6 +334,7 @@
                 <h4 class="mb-3 h4">Información personal:</h4>
                 <form id="create_user" action="{{ route('usernew.store') }}" method="post"
                     enctype="multipart/form-data" class="needs-validation" autocomplete="on" novalidate>
+                    @csrf
                     <div class="row g-3">
 
                         <div class="col-sm-6">
