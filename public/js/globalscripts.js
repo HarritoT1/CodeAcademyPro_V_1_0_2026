@@ -82,6 +82,8 @@ async function request_code() {
     }
 
     try {
+        document.getElementById('code_request_button')?.setAttribute('disabled', '');
+                    
         const response = await fetch('/userpassword', {
             method: 'POST',
             headers: {
@@ -110,7 +112,6 @@ async function request_code() {
             alert(data.message);
             document.getElementById('code_hash')?.removeAttribute('disabled');
             document.getElementById('code_button')?.removeAttribute('disabled');
-            document.getElementById('code_request_button')?.setAttribute('disabled', '');
             document.getElementById('email')?.setAttribute('disabled', '');
 
             document.getElementById('attempts').textContent = `${data.attempts}`;
@@ -130,7 +131,7 @@ async function request_code() {
 async function validate_response_code() {
     const code_hash = document.getElementById('code_hash')?.value?.trim();
 
-    const html_replace_string = `
+    /*const html_replace_string = `
         <form id="reset_password" action="{{ route('') }}" method="post" enctype="application/x-www-form-urlencoded"
           class="needs-validation" autocomplete="off" novalidate>
           <!-- Agrega el token CSRF @csrf -->
@@ -176,7 +177,7 @@ async function validate_response_code() {
 
           <br><br><br><br><br>
         </form>
-    `;
+    `;*/
 
     if (!code_hash) {
         alert('Por favor, ingrese un código para validar.');
@@ -192,21 +193,21 @@ async function validate_response_code() {
     try {
         document.getElementById('loader_circle')?.classList?.remove('d-none');
 
-        /*const response = await fetch('/userpassword/validate', {
-            method: 'PUT',
+        const response = await fetch('/userpassword/validate', {
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
             },
-            body: JSON.stringify({ 'code_hash': code_hash.toUpperCase(); })
-        });*/
+            body: JSON.stringify({ 'code': code_hash.toUpperCase() })
+        });
 
         // Simulación de respuesta exitosa.
-        const response = {
+        /*const response = {
             ok: true,
             json: async () => ({ message: 'El código es correcto.', html_replace: html_replace_string }),
-        };
+        };*/
 
         // Simulación de respuesta fallida. Ej: código incorrecto.
         /*const response = {
@@ -225,10 +226,12 @@ async function validate_response_code() {
             asig_listeners_of_submit_forms();
             document.getElementById('password')?.addEventListener('input', matchPasswords);
             document.getElementById('confirm_password')?.addEventListener('input', matchPasswords);
+
+            document.getElementById('submit')?.addEventListener('click', () => ask_before_submit_new('reset_password'));
             return;
         } else {
-            alert(data.message);
-            if (data.attemps > 0) {
+            alert(`${data.message}, oportunidades restantes: ${data.attempts}`);
+            if (data.attempts > 0) {
                 document.getElementById('attempts').textContent = `${data.attempts}`;
                 document.getElementById('code_hash').value = '';
                 document.getElementById('loader_circle')?.classList?.add('d-none');
