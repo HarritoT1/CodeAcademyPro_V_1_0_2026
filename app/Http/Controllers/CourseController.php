@@ -31,4 +31,15 @@ class CourseController extends Controller
 
         return redirect()->back()->with('success', 'El usuario se ha inscrito en el curso.');
     }
+
+    public function show (Course $course) {
+        $user = Auth::user();
+
+        // Validar que este inscrito en el curso.
+        if (!$user->courses()->where('courses.id', $course->id)->exists()) {
+            return redirect()->route('newcourses')->withErrors(['error' => 'El usuario no se encuentra inscrito en el curso: ' . $course->course_name . '.']);
+        }
+
+        return view('userpages.course', compact('user', 'course'));
+    }
 }

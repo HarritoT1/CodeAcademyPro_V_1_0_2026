@@ -118,8 +118,6 @@ Route::middleware(['auth'])->group(function () { // Protege la ruta con autentic
 
     Route::post('/newcourses/{course}', [CourseController::class, 'inscription'])->name('newcourses.inscription')->where('course', '[0-9]+'); 
 
-    Route::get('/course', function () {
-        return view('userpages.course'); // http://127.0.0.1:8000/course
-    });
+    Route::get('/course/{course}', [CourseController::class, 'show'])->name('course')->where('course', '[0-9]+');
 
 });

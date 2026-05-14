@@ -30,9 +30,9 @@
         <div class="row w-100 my-md-3 justify-content-center gap-5 pt-5 mx-auto">
 
             @forelse ($user_courses as $course)
-                <div class="col-md-5 col-11 bg-body-tertiary pt-3 px-3 pt-md-5 px-md-5 text-center overflow-hidden"
+                <div class="col-md-5 col-11 bg-body-tertiary pt-3 px-3 pt-md-5 px-md-5 d-flex flex-column text-center overflow-hidden"
                     style="outline: 3px solid white;">
-                    <a class="my-3 py-3 element-animation text-body" href="" target="_self" title="Ir al curso">
+                    <a class="my-3 py-3 element-animation text-body" href="{{ route('course', ['course' => $course->id]) }}" target="_self" title="Ir al curso">
                         <h2 class="display-5 fw-bold">Curso: {{ $course->course_name }}</h2>
                         <p class="lead d-flex align-items-center justify-content-center gap-2">
                             @if ($course->progress == 100)
@@ -55,7 +55,7 @@
                     <div class="bg-dark shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
                         <a class="element-animation"
                             style="height: 100% !important; width: 20rem !important; background: url('{{ asset($course->image_url) }}') no-repeat center / contain;"
-                            href="" target="_self" title="Ir al curso"></a>
+                            href="{{ route('course', ['course' => $course->id]) }}" target="_self" title="Ir al curso"></a>
                     </div>
                 </div>
             @empty
