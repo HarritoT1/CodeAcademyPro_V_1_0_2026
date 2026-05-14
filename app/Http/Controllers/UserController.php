@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use App\Models\Role;
 use App\Http\Requests\UserStoreRequest;
+use App\Http\Requests\UserUpdateRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CodeMail;
 use App\Models\PasswordResetToken;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -301,7 +301,7 @@ class UserController extends Controller
             $user = User::find($user_id ?? 0);
 
             if (!$user) {
-                return Redirect::back()->withErrors(['error' => 'El usuario no existe.']);
+                return redirect()->back()->withErrors(['error' => 'El usuario no existe.']);
             }
 
             $user->password = Hash::make($request->input('password'));
@@ -312,7 +312,60 @@ class UserController extends Controller
 
             return redirect()->route('login')->with('status', 'Has restablecido tu contraseña exitosamente. Inicia sesión con tu nueva contraseña.');
         } catch (\Throwable $th) {
-            return Redirect::back()->withErrors(['error' => 'Ocurrio un error en el servidor:' . $th->getMessage()]);
+            return redirect()->back()->withErrors(['error' => 'Ocurrio un error en el servidor:' . $th->getMessage()]);
+        }
+    }
+
+    public function update(UserUpdateRequest $request)
+    {
+        $data = $request->validated();
+
+        try {
+            $user = Auth::user();
+
+            $oldPath = $user->avatar_url;
+
+            if ($request->hasFile('avatar_url') && $request->file('avatar_url')?->isValid()) {
+                $image = $request->file('avatar_url');
+                $imageName = time() . '.' . $image->getClientOriginalExtension();
+                $path = $image->storeAs('UploadFiles', $imageName, 'public');
+
+                if ($oldPath !== 'UploadFiles/default-avatar.png') {
+                    Storage::disk('public')->delete($oldPath);
+                }
+
+                unset($data['preview']);
+
+                $user->avatar_url = $path;
+
+                $user->save();
+            } 
+
+            // Si solo borro su foto de perfil.
+            // Validar si es foto de Google o almacenada en el disco público.
+            if (isset($data['preview'])) {
+                if (str_starts_with($data['preview'], 'https://lh3.googleusercontent.com/')) {
+                    $user->avatar_url = 'UploadFiles/default-avatar.png';
+                } else {
+                    Storage::disk('public')->delete(Str::after($data['preview'], '/storage/'));
+                    $user->avatar_url = 'UploadFiles/default-avatar.png';
+                }
+
+                $user->save();
+            }
+
+            $user->update([
+                'name' => $data['name'],
+                'fullname' => $data['fullname'],
+                'rol_id' => $data['rol_id'],
+                'phone_number' => $data['phone_number'],
+                'home_address' => $data['home_address'],
+                'description' => $data['description'],
+            ]);
+
+            return redirect()->route('user', ['user' => $user->id])->with('success', 'El usuario se ha actualizado exitosamente.');
+        } catch (\Throwable $th) {
+            return redirect()->back()->withErrors(['error' => 'Ocurrio un error en el servidor:' . $th->getMessage()]);
         }
     }
 }

@@ -45,7 +45,7 @@
             <div class="col-md-7">
                 <h4 class="mb-3 fw-bold">Información personal:</h4>
 
-                <form id="update" action="" method="post" enctype="multipart/form-data" class="needs-validation"
+                <form id="update" action="{{ route('user.update') }}" method="post" enctype="multipart/form-data" class="needs-validation"
                     autocomplete="on" novalidate>
                     @method('PUT')
                     @csrf
@@ -76,7 +76,7 @@
                             <div class="input-group">
                                 <span class="input-group-text">@</span>
                                 <input type="email" maxlength="255" required class="form-control" id="email"
-                                    name="email" placeholder="" value="{{ $user->email }}" disabled>
+                                    name="email" placeholder="" value="{{ $user->email }}" readonly>
                                 <div class="invalid-feedback">
                                     Proporciona un correo electrónico válido.
                                 </div>
@@ -142,6 +142,10 @@
                         </div>
                     </div>
 
+                    @if ($user->google_id)
+                        <input type="hidden" name="google_id" value="{{ $user->google_id }}">
+                    @endif
+
                     <hr class="my-4" />
 
                     @if ($editable)
@@ -150,6 +154,22 @@
                                 type="button" onclick="editForm()">
                                 Editar perfil
                             </button>
+                        </div>
+                    @endif
+
+                    @if($errors->any())
+                        @foreach ($errors->all() as $error)
+                        <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert" style="text-align: center">
+                            {{ $error }}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close me-2"></button>
+                        </div>
+                        @endforeach
+                    @endif
+
+                    @if (session('success'))
+                        <div class="alert alert-success alert-dismissible fade show mt-3" role="alert" style="text-align: center">
+                        {{ session('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close me-2"></button>
                         </div>
                     @endif
                 </form>

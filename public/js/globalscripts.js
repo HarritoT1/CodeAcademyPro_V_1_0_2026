@@ -416,7 +416,6 @@ function ask_before_submit(id_form) {
     } else return;
 }
 
-
 function deletePhoto(event, id_img) {
     if (confirm('¿Estás seguro de eliminar tu foto de perfil?')) {
         const path = document.getElementById(id_img).src.trim();
@@ -430,12 +429,11 @@ function deletePhoto(event, id_img) {
 
         event.target.setAttribute("disabled", "");
 
-        document.getElementById('update')?.insertAdjacentHTML('afterend', `<input type="hidden" name="${id_img}" value="${path}">`);
+        document.getElementById('update')?.insertAdjacentHTML('afterend', `<input type="hidden" name="${id_img}" value="${path}" form="update">`);
 
         return;
     } else return;
 }
-
 
 async function registerAdvance(event, id, type) {
     if (confirm("¿Estas seguro de esta acción?")) {

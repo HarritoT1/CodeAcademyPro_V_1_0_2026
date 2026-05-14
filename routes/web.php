@@ -41,7 +41,7 @@ Route::get('/auth/google/callback', function () {
             'google_id' => $googleUser->getId(),
             'name' => $user_old?->name ?? $googleUser->getName(),
             'email_verified_at' => $user_old?->email_verified_at ?? now(),
-            'avatar_url' => $googleUser->getAvatar(),
+            'avatar_url' => $user_old?->avatar_url ?? $googleUser->getAvatar(),
         ]);
 
         Auth::login($user, true);
@@ -66,6 +66,8 @@ Route::middleware(['auth', 'verified'])->group(function () { // Protege la ruta 
     Route::get('/newcourses', [CourseController::class, 'index'])->name('newcourses'); // http://127.0.0.1:8000/newcourses
 
     Route::get('/user/{user}', [UserController::class, 'show'])->name('user')->where('user', '[0-9]+'); // http://127.0.0.1:8000/user/{id} - Asegura que el ID sea un número entero.
+
+    Route::put('/user', [UserController::class, 'update'])->name("user.update");
 });
 
 // Creación de usuarios. --------------------------------
