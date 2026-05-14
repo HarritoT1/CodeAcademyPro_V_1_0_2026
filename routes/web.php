@@ -107,7 +107,7 @@ Route::post('/userpassword', [UserController::class, 'requestCode'])->name("user
 
 Route::post('/userpassword/validate', [UserController::class, 'validateCode'])->name("userpassword.validate");
 
-Route::put('/userpasword/reset', function () {return 'listo';})->name("userpassword.reset");
+Route::put('/userpasword/reset', [UserController::class, 'resetPassword'])->name("userpassword.reset");
 
 /************************************************************************************************/
 

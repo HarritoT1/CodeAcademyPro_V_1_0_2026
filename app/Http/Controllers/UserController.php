@@ -15,6 +15,7 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CodeMail;
 use App\Models\PasswordResetToken;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
@@ -212,6 +213,8 @@ class UserController extends Controller
                     'attempts' => $user_token->attempts
                 ], 422);
             } else {
+                $request->session()->forget('password_reset_token_id');
+                $request->session()->put('user_update_id', $token->user->id);
                 return response()->json([
                     'message' => 'El código es correcto.',
                     'html_replace' => '<form id="reset_password" action="/userpasword/reset" method="post" enctype="application/x-www-form-urlencoded"
@@ -263,6 +266,53 @@ class UserController extends Controller
                 ], 200);
             }
         } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Ocurrio un error al procesar la solicitud:' . $th->getMessage(),
+                'attempts' => 0
+            ], 500);
+        }
+    }
+
+    public function resetPassword(Request $request)
+    {
+        $request->merge([
+            'password' => trim($request->input('password')),
+            'confirm_password' => trim($request->input('confirm_password')),
+        ]);
+
+        $request->validate([
+            'password' => 'required|string|min:8|max:30',
+            'confirm_password' => 'required|string|min:8|max:30|same:password'
+        ], [
+            'password.required' => 'El campo de contraseña es obligatorio.',
+            'password.string' => 'La contraseña debe ser una cadena de texto.',
+            'password.min' => 'La contraseña debe tener al menos 8 caracteres.',
+            'password.max' => 'La contraseña no puede tener más de 30 caracteres.',
+            'confirm_password.required' => 'El campo de confirmación de contraseña es obligatorio.',
+            'confirm_password.string' => 'La confirmación de contraseña debe ser una cadena de texto.',
+            'confirm_password.min' => 'La confirmación de contraseña debe tener al menos 8 caracteres.',
+            'confirm_password.max' => 'La confirmación de contraseña no puede tener más de 30 caracteres.',
+            'confirm_password.same' => 'Las contraseñas no coinciden.',
+        ]);
+
+        try {
+            $user_id = $request->session()->get('user_update_id');
+
+            $user = User::find($user_id ?? 0);
+
+            if (!$user) {
+                return Redirect::back()->withErrors(['error' => 'El usuario no existe.']);
+            }
+
+            $user->password = Hash::make($request->input('password'));
+
+            $user->save();
+
+            $request->session()->forget('user_update_id');
+
+            return redirect()->route('login')->with('status', 'Has restablecido tu contraseña exitosamente. Inicia sesión con tu nueva contraseña.');
+        } catch (\Throwable $th) {
+            return Redirect::back()->withErrors(['error' => 'Ocurrio un error en el servidor:' . $th->getMessage()]);
         }
     }
 }
