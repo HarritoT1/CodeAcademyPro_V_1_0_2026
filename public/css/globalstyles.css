@@ -204,4 +204,14 @@ iframe {
     transition: all 1s ease-in-out;
 }
 
+.min-vh-100 {
+    min-height: 100vh !important;
+}
+
+@media (max-width: 767px) {
+    .min-vh-100 {
+        min-height: auto !important;
+    }
+}
+
 

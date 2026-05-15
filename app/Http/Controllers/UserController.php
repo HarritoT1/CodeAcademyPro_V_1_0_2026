@@ -47,7 +47,7 @@ class UserController extends Controller
             return $course;
         });
 
-        return view('userpages.user')->with('user', $user)->with('roles', Role::all())->with('editable', $editable)->with('user_courses', $user_courses); // http://
+        return view('userpages.user')->with('user', $user)->with('roles', Role::all())->with('editable', $editable)->with('user_courses', $user_courses); 
     }
 
     public function store(UserStoreRequest $request)

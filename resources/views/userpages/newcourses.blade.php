@@ -55,7 +55,7 @@
                     <p class="w-100 text-center fs-2 fw-bold lh-base text-warning">¡Ups no hay cursos nuevos por el momento!</p>
                 @else
                     @foreach ($newcourses as $course)
-                        @if ($course->is_visible)
+                        @if ($course->is_visible && $course->topics()->count() > 0)
                             <div class="col curso">
                                 <div class="card shadow-sm h-100">
                                     <img src="{{ asset('storage/' . $course->image_url) }}" class="card-img-top" height="225px"
