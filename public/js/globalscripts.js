@@ -435,10 +435,10 @@ function deletePhoto(event, id_img) {
     } else return;
 }
 
-async function registerAdvance(event, id, type) {
+async function registerAdvance(event, id, type, course_id) {
     if (confirm("¿Estas seguro de esta acción?")) {
         try {
-            /*const response = await fetch('/register/advance', {
+            const response = await fetch(`/course/${course_id}/advance`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -446,12 +446,12 @@ async function registerAdvance(event, id, type) {
                     'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
                 },
                 body: JSON.stringify({ 'id': id, 'type': type })
-            });*/
+            });
 
             // Simulación de respuesta exitosa.
-            const response = {
+            /*const response = {
                 ok: true
-            };
+            };*/
 
             // Simulación de respuesta fallida.
             /*const response = {

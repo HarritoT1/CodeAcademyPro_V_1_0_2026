@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Course;
 use App\Models\Topic;
 use App\Models\Subtopic;
+use App\Models\User;
 
 class CourseController extends Controller
 {
@@ -24,7 +25,7 @@ class CourseController extends Controller
         $user = Auth::user();
 
         // validar que el usuario no se haya inscrito en el curso.
-        if ($user->courses()->where('courses.id', $course->id)->exists()) {
+        if ($this->registered($user, $course)) {
             return redirect()->back()->withErrors(['error' => 'El usuario ya se encuentra inscrito en el curso: ' . $course->course_name . '.']);
         }
 
@@ -83,5 +84,19 @@ class CourseController extends Controller
         } catch (\Throwable $th) {
             return redirect()->route('course', ['course' => $course->id])->withErrors(['error' => 'Parametros inválidos.']);
         }
+    }
+
+    public function advance (Course $course, Request $request) {
+        $user = Auth::user();
+
+        if (!$this->registered($user, $course)) {
+            return response()->json(['error' => 'El usuario no se encuentra inscrito en el curso: ' . $course->course_name . '.'], 400);
+        }
+
+        // ...
+    }
+
+    private function registered (User $user, Course $course): bool {
+        return $user->courses()->where('courses.id', $course->id)->exists();
     }
 }
