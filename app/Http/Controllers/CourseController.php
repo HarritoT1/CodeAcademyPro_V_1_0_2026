@@ -9,6 +9,8 @@ use App\Models\Course;
 use App\Models\Topic;
 use App\Models\Subtopic;
 use App\Models\User;
+use App\Models\UserTopicProgress;
+use App\Models\UserSubtopicProgress;
 
 class CourseController extends Controller
 {
@@ -93,7 +95,35 @@ class CourseController extends Controller
             return response()->json(['error' => 'El usuario no se encuentra inscrito en el curso: ' . $course->course_name . '.'], 400);
         }
 
-        // ...
+        try {
+            $type = trim($request->input('type')) == '' ? null : trim($request->input('type'));
+            $resource_id = trim($request->input('id')) == '' ? null : trim($request->input('id'));
+
+            // Si existen ambas entradas en el cuerpo HTTP, creamos el avance en el recurso correspondiente.
+            if (isset($type) && isset($resource_id)) {
+
+                // Validar que ese tema o subtema pertenezcan al curso inscrito por el usuario.
+                if ($type == 'Topic' && !$course->topics()->where('topics.id', $resource_id)->exists()) {
+                    throw new \Exception('Ese tema no pertenece al curso.');
+                } else if ($type == 'Subtopic' && !Subtopic::where('id', $resource_id)->firstOrFail()->topic->course_id == $course->id) {
+                    throw new \Exception('Ese subtema no pertenece al curso.'); 
+                }
+
+                $progress = null;
+
+                if($type == 'Topic') {
+                    $progress = UserTopicProgress::firstOrCreate(['user_id' => $user->id, 'topic_id' => $resource_id]);
+                    return response()->json(['success' => 'Avance registrado con exito del tema: ' . $progress->topic->title . '. Registrado: ' . $progress->topic->created_at->toDayDateTimeString() . '.'], 200);
+                } else if ($type == 'Subtopic') {
+                    $progress = UserSubtopicProgress::firstOrCreate(['user_id' => $user->id, 'subtopic_id' => $resource_id]);
+                    return response()->json(['success' => 'Avance registrado con exito del subtema: ' . $progress->subtopic->title . '. Registrado: ' . $progress->subtopic->created_at->toDayDateTimeString() . '.'], 200);
+                } else throw new \Exception('Entradas inválidas.');
+
+            } else throw new \Exception('Entradas inválidas.');
+
+        } catch (\Throwable $th) {
+            return response()->json(['error' => $th->getMessage()], 400);
+        }
     }
 
     private function registered (User $user, Course $course): bool {

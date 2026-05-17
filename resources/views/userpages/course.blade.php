@@ -483,7 +483,7 @@
 
                     <button class="d-block element-animation px-5 py-2 mb-5" type="button"
                         style="margin-left: auto; outline: black 3px solid;" title="Registrar"
-                        onclick="registerAdvance(event, {{ $content->id }}, {{ $content_type === 'App\Models\Topic' ? 'Topic' : 'Subtopic' }}, {{ $course->id }})">
+                        onclick="registerAdvance(event, {{ $content->id }}, '{{ $content_type === 'App\Models\Topic' ? 'Topic' : 'Subtopic' }}', {{ $course->id }})">
                         Registrar avance de lección
                     </button>
                   @else <!-- Este es el inicio del curso ($content = $course) -->
