@@ -121,4 +121,6 @@ Route::middleware(['auth'])->group(function () { // Protege la ruta con autentic
     Route::get('/course/{course}', [CourseController::class, 'show'])->name('course')->where('course', '[0-9]+');
 
     Route::post('/course/{course}/advance' , [CourseController::class, 'advance'])->name('course.advance')->where('course', '[0-9]+');
+
+    Route::get('/certificate', [CourseController::class, 'certificate'])->name('certificate');
 });

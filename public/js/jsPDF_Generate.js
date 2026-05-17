@@ -2,19 +2,20 @@ async function generateCertificate(course_id) {
     console.log('Generando certificado del usuario.');
 
     try {
-        /*const response = await fetch(`/certificate?course_id=${course_id}`, {
+        const response = await fetch(`/certificate?course_id=${course_id}`, {
             method: 'GET',
             headers: {
+                'Content-Type': 'application/json',
                 'Accept': 'application/json',
                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')?.getAttribute('content') || ''
             },
-        });*/
+        });
 
         // Simulación de respuesta exitosa.
-        const response = {
+        /*const response = {
             ok: true,
             json: async () => ({ name: 'Karina Sayuri Díaz Martínez', course_name: 'JavaScript desde 0' }),
-        };
+        };*/
 
         // Simulación de respuesta fallida.
         /*const response = {

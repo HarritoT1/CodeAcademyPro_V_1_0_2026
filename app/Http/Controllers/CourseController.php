@@ -11,6 +11,8 @@ use App\Models\Subtopic;
 use App\Models\User;
 use App\Models\UserTopicProgress;
 use App\Models\UserSubtopicProgress;
+use phpseclib3\File\ASN1\Maps\Certificate;
+use Illuminate\Support\Facades\DB;
 
 class CourseController extends Controller
 {
@@ -123,6 +125,31 @@ class CourseController extends Controller
 
         } catch (\Throwable $th) {
             return response()->json(['error' => $th->getMessage()], 400);
+        }
+    }
+
+    public function certificate (Request $request) {
+        $user = Auth::user();
+
+        //Sanitizar y válidar query parameters.
+        $request->merge(['course_id' => trim($request->input('course_id'))]);
+
+        $course_id = $request->validate(['course_id' => 'required|integer|exists:courses,id'], ['course_id.required' => 'El id del curso es requerido.', 'course_id.integer' => 'El id del curso debe ser un entero.', 'course_id.exists' => 'El id del curso no existe.'])['course_id'];
+
+        try {
+            $course = Course::findOrFail($course_id);
+
+            if (!$this->registered($user, $course)) return response()->json(['message' => 'El usuario no se encuentra inscrito en el curso: ' . $course->course_name . '.'], 422);
+
+            // Como el usuario esta inscrito en el curso, validar que lo haya completado al 100% con el SP.
+            $progress = (int) DB::select('CALL get_progress_in_course(?, ?)', [$course->id, $user->id])[0]->progress;
+
+            if ($progress < 100) return response()->json(['message' => 'El usuario no ha completado el curso: ' . $course->course_name . '.'], 422);
+
+            return response()->json(['name' => $user->name, 'course_name' => $course->course_name], 200);
+            
+        } catch (\Throwable $th) {
+            return response()->json(['message' => 'Error en el servidor: ' . $th->getMessage() . '.'], 500);
         }
     }
 
