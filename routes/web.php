@@ -71,7 +71,7 @@ Route::middleware(['auth', 'verified'])->group(function () { // Protege la ruta 
 // Creación de usuarios. --------------------------------
 
 Route::get('/usernew/{user?}', function ($user = null) {
-    if ($user) $user = User::find($user);
+    if ($user) $user = User::findOrFail($user);
     return view('usernew', ['roles' => Role::all(), 'user' => $user]); // http://127.0.0.1:8000/usernew
 })->name("usernew")->where('user', '[0-9]+');
 

@@ -288,7 +288,7 @@
             </div>
             <!-- Modal terms and conditions -->
 
-            @if ($user !== null && $user->email_verified_at === null)
+            @if ($user !== null && $user?->email_verified_at === null)
                 <div class="modal fade" id="mail_confirm" tabindex="-1">
                     <div class="modal-dialog modal-xl">
                         <div class="modal-content">
