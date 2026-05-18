@@ -230,33 +230,115 @@ Proyecto funcional y completo desarrollado para cliente, enfocado en la construc
 ### Autenticación
 
 <p align="center">
-  <img src="docs/screenshots/login.png" width="500" alt="Pantalla de inicio de sesión">
+  <img src="public\img\screenshots\autenticacion\a1.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\autenticacion\a2.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\autenticacion\a3.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\autenticacion\a4.png" width="70%">
+</p>
+
+### Creación de usuarios
+
+<p align="center">
+  <img src="public\img\screenshots\user_create\u1.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\user_create\u2.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\user_create\u3.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\user_create\u4.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\user_create\u5.png" width="70%">
 </p>
 
 ### Dashboard
 
 <p align="center">
-  <img src="docs/screenshots/dashboard.png" width="500" alt="Vista principal del sistema">
+  <img src="public\img\screenshots\dashboard\d1.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\dashboard\d2.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\dashboard\d3.png" width="70%">
 </p>
 
-### Cursos y contenido académico
+### Inscripción a cursos
 
 <p align="center">
-  <img src="docs/screenshots/courses.png" width="500" alt="Listado de cursos disponibles">
-  &nbsp;&nbsp;&nbsp;
-  <img src="docs/screenshots/topics.png" width="500" alt="Vista de temas y subtemas">
+  <img src="public\img\screenshots\course_inscription\c1.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\course_inscription\c2.png" width="50%">
+  &nbsp;
+  <img src="public\img\screenshots\course_inscription\c3.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\course_inscription\c4.png" width="70%">
 </p>
 
-### Progreso académico
+### Navegación dentro del curso
 
 <p align="center">
-  <img src="docs/screenshots/progress.png" width="500" alt="Seguimiento de progreso del usuario">
+  <img src="public\img\screenshots\course_navigation\c1.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\course_navigation\c2.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\course_navigation\c3.png" width="70%">
 </p>
 
-### Certificados
+### Perfil del usuario y otros usuarios
 
 <p align="center">
-  <img src="docs/screenshots/certificate.png" width="500" alt="Generación de certificados académicos">
+  <img src="public\img\screenshots\user_profile\u1.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\user_profile\u2.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\user_profile\u3.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\user_profile\u4.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\user_profile\u5.png" width="50%">
+  &nbsp;
+  <img src="public\img\screenshots\user_profile\u6.png" width="50%">
+  &nbsp;
+  <img src="public\img\screenshots\user_profile\u7.png" width="50%">
+</p>
+
+### Contacto
+
+<p align="center">
+  <img src="public\img\screenshots\Contacto\c1.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\Contacto\c2.png" width="50%">
+  &nbsp;
+  <img src="public\img\screenshots\Contacto\c3.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\Contacto\c4.png" width="50%">
+</p>
+
+### Recuperación/Actualización de contraseña
+
+<p align="center">
+  <img src="public\img\screenshots\password_reset\p1.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\password_reset\p2.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\password_reset\p3.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\password_reset\p4.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\password_reset\p5.png" width="70%">
+</p>
+
+### Certificados generados
+
+<p align="center">
+  <img src="public\img\screenshots\certificado.png" width="70%">
+</p>
+
+### Manejo errores 404
+
+<p align="center">
+  <img src="public\img\screenshots\404.png" width="70%">
 </p>
 
 ---
