@@ -1,58 +1,267 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# CodeAcademyPro - Plataforma Web de Recursos Académicos y Gestión de Cursos.
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplicación web desarrollada para la gestión y distribución de recursos académicos, permitiendo a los usuarios registrarse, visualizar cursos, avanzar por temas y subtemas, así como generar certificados de progreso.
 
-## About Laravel
+El sistema fue desarrollado utilizando Laravel bajo arquitectura MVC, integrando autenticación, control de progreso académico y persistencia de datos en MySQL mediante procedimientos almacenados y consultas estructuradas.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Objetivo
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Desarrollar una plataforma web que permita centralizar contenido académico estructurado por cursos, temas y subtemas, proporcionando herramientas para el seguimiento del progreso del usuario y generación de certificados.
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Tecnologías utilizadas
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Backend
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+* PHP
+* Laravel
+* Programación Orientada a Objetos (POO)
+* Eloquent ORM
+* Middlewares
+* Form Request
+* Stored Procedures
 
-## Agentic Development
+### Frontend
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+* HTML5
+* CSS3
+* JavaScript
+* Blade
+* Bootstrap
+* Vite
+
+### Base de datos
+
+* MySQL 
+* Migraciones
+* Seeders
+* Model - Factorys
+* Scripts SQL
+* Stored Procedures
+
+### Herramientas y entorno
+
+* Composer
+* Visual Studio Code
+* PHPUnit
+* JSON
+* HTTP
+* Git y Github
+* MySQL Workbench
+
+---
+
+## Características técnicas destacadas
+
+* Arquitectura MVC implementada con Laravel
+* Gestión relacional de cursos, temas y subtemas
+* Sistema de autenticación basado en roles
+* Sistema de autenticación con proveedor de OAuth 2.0 de Google
+* Control de progreso académico por usuario
+* Persistencia de avance mediante tablas de progreso
+* Generación de certificados académicos
+* Uso de procedimientos almacenados para operaciones específicas
+* Aplicación de validaciones backend mediante Form Request
+* Protección contra ataques CSRF, XSS e inyecciones SQL
+* Creación de usuarios mediante Google o formulario nativo con verificación de email obligatoria
+
+---
+
+## Funcionalidades principales
+
+### Gestión de usuarios
+
+* Registro e inicio de sesión
+* Sistema de roles y permisos
+* Gestión de perfiles de usuario
+* Actualización de perfil
+* Verificación de email obligatoria
+* Recuperación de password mediante token de un solo uso
+
+### Gestión académica
+
+* Visualización de cursos disponibles
+* Organización por temas y subtemas
+* Registro de progreso por usuario
+* Seguimiento de avance académico
+
+### Progreso y aprendizaje
+
+* Persistencia del progreso por tema y subtema
+* Registro de avance individual
+* Visualización de contenido estructurado
+
+### Certificaciones
+
+* Generación de certificados académicos
+* Validación del progreso e inscripción antes de emisión
+
+### Administración
+
+* Gestión de cursos y contenido académico
+* Consulta de registros académicos
+* Administración de usuarios y roles
+
+---
+
+## Arquitectura
+
+El sistema está desarrollado bajo el patrón MVC (Modelo - Vista - Controlador), utilizando Laravel como framework principal.
+
+La arquitectura permite una separación clara entre:
+
+* Lógica de negocio
+* Acceso a datos
+* Interfaz de usuario
+
+Esto facilita la mantenibilidad, escalabilidad y organización general del proyecto.
+
+---
+
+## Base de datos
+
+### Motor utilizado
+
+* MySQL (InnoDB)
+
+### Entidades principales
+
+* Users
+* Roles
+* Courses
+* Topics
+* Subtopics
+* Registrations
+* UserTopicProgresses
+* UserSubtopicProgresses
+
+### Características implementadas
+
+* Relaciones entre cursos, temas y subtemas
+* Persistencia de progreso académico
+* Scripts SQL para inicialización de base de datos
+* Uso de procedimientos almacenados
+
+---
+
+## Seguridad
+
+El sistema implementa medidas de seguridad utilizando herramientas integradas de Laravel:
+
+* Protección CSRF mediante tokens
+* Prevención de inyecciones SQL usando Eloquent ORM
+* Prevención de XSS mediante escape automático de Blade
+* Validaciones backend mediante Form Request
+* Autenticación basada en sesiones
+
+---
+
+## Instalación
+
+1. Clonar el repositorio
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone https://github.com/HarritoT1/CodeAcademyPro_V_1_0_2026.git
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+2. Instalar dependencias
 
-## Contributing
+```bash
+composer install
+npm install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+3. Configurar variables de entorno
 
-## Code of Conduct
+```bash
+cp .env.example .env
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. Configurar conexión a base de datos en `.env`
 
-## Security Vulnerabilities
+5. Generar clave de aplicación
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+php artisan key:generate
+```
 
-## License
+6. Importar scripts SQL incluidos en el proyecto
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+* `CodeAcademyPro.sql`
+* `CodeAcademyPro_DML.sql`
+
+7. Ejecutar servidor de desarrollo
+
+```bash
+php artisan serve
+```
+
+---
+
+## Uso del sistema
+
+### Flujo general
+
+1. Registro (verificando email) o inicio de sesión  
+2. Visualización de cursos disponibles
+3. Inscripción a curso de interés
+4. Navegación por temas y subtemas
+5. Registro manual del progreso
+6. Consulta del avance académico
+7. Generación de certificados
+8. Consulta de tu perfil y edición
+9. Consulta de otros perfiles (sin edición)
+10. Consulta de información de contacto
+11. Recuperación o cambio de contraseña
+
+---
+
+## Estado del proyecto
+
+Proyecto funcional y completo desarrollado para cliente, enfocado en la construcción de una plataforma web educativa con persistencia de progreso y gestión de contenido académico.
+
+---
+
+## Capturas del sistema
+
+### Autenticación
+
+<p align="center">
+  <img src="docs/screenshots/login.png" width="500" alt="Pantalla de inicio de sesión">
+</p>
+
+### Dashboard
+
+<p align="center">
+  <img src="docs/screenshots/dashboard.png" width="500" alt="Vista principal del sistema">
+</p>
+
+### Cursos y contenido académico
+
+<p align="center">
+  <img src="docs/screenshots/courses.png" width="500" alt="Listado de cursos disponibles">
+  &nbsp;&nbsp;&nbsp;
+  <img src="docs/screenshots/topics.png" width="500" alt="Vista de temas y subtemas">
+</p>
+
+### Progreso académico
+
+<p align="center">
+  <img src="docs/screenshots/progress.png" width="500" alt="Seguimiento de progreso del usuario">
+</p>
+
+### Certificados
+
+<p align="center">
+  <img src="docs/screenshots/certificate.png" width="500" alt="Generación de certificados académicos">
+</p>
+
+---
+
+## Autor
+
+Harol Gael Cardenas Trejo
+Ingeniería en Sistemas Computacionales
