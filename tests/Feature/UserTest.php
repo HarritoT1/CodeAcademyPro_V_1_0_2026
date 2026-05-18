@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Hash;
 class UserTest extends TestCase
 {
     use DatabaseTransactions;
+    
     public function test_creacion_de_usuario (): void
     {   
         // Apagar middlewares para token csrf.

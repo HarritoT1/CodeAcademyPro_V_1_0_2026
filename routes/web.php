@@ -112,7 +112,7 @@ Route::put('/userpasword/reset', [UserController::class, 'resetPassword'])->name
 
 /************************************************************************************************ CURSOS ***************************************************************************************/
 
-Route::middleware(['auth'])->group(function () { // Protege la ruta con autenticación.
+Route::middleware(['auth', 'verified'])->group(function () { // Protege la ruta con autenticación.
 
     Route::get('/newcourses', [CourseController::class, 'index'])->name('newcourses'); // http://127.0.0.1:8000/newcourses
 
