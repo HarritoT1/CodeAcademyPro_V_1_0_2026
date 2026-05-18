@@ -283,6 +283,8 @@ Proyecto funcional y completo desarrollado para cliente, enfocado en la construc
   <img src="public\img\screenshots\course_navigation\c2.png" width="70%">
   &nbsp;
   <img src="public\img\screenshots\course_navigation\c3.png" width="70%">
+  &nbsp;
+  <img src="public\img\screenshots\course_navigation\c4.png" width="50%">
 </p>
 
 ### Perfil del usuario y otros usuarios
