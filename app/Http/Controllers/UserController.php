@@ -129,7 +129,7 @@ class UserController extends Controller
 
             // Si aún existe uno válido.
             if (
-                $token && $token->attempts > 0 && now()->lessThan($token->expires_at)
+                $token && $token?->attempts > 0 && now()->lessThan($token?->expires_at ?? now()->subMinutes(15))
             ) {
                 $request->session()->put('password_reset_token_id', $token->id);
 
@@ -196,18 +196,16 @@ class UserController extends Controller
             $token = PasswordResetToken::where('code_hash', hash('sha256', $code_input))->first();
 
             // Válidar que el código exista, no este quemado y este vigente.
-            if ($token && ($token?->attempts <= 0 || now()->greaterThan($token?->expires_at))) {
+            if ($token && ($token?->attempts <= 0 || now()->greaterThan($token?->expires_at ?? now()->addMinutes(15)))) {
                 return response()->json([
                     'message' => 'El código no es válido o ya expiró. Solicita uno nuevo',
                     'attempts' => 0
                 ], 401);
             }
 
-            dd(
-                now(),
-                $token->expires_at,
-                now()->greaterThan($token->expires_at)
-            );
+            return response()->json([
+                'message' => 'Info:' . $token?->expires_at ?? 'nulo' . ' - ' . now(),
+            ]);
 
             // Si el token no es valido, decrementar la cantidad de intentos, del token de la sesión.
             if (!$token) {
