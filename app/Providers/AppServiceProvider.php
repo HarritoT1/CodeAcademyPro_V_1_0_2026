@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Support\Facades\URL;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,5 +32,9 @@ class AppServiceProvider extends ServiceProvider
                 ->line('Si no creaste una cuenta, puedes ignorar este mensaje.')
                 ->salutation('Saludos, CodeAcademyPro');
         });
+
+        if (env('APP_ENV') === 'production') {
+            URL::forceScheme('https');
+        }
     }
 }
