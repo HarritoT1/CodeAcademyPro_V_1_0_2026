@@ -21,7 +21,7 @@ function togglePassword() {
     const type = password_field.type === "password" ? "text" : "password";
     password_field.type = type;
 
-    const eye_icon = type === "password" ? "http://127.0.0.1:8000/img/eyeclosed.png" : "http://127.0.0.1:8000/img/eyeopened.png";
+    const eye_icon = type === "password" ? "https://codeacademypro.onrender.com/img/eyeclosed.png" : "https://codeacademypro.onrender.com/img/eyeopened.png";
 
     document.querySelector("span[onclick='togglePassword()'] > img").src = eye_icon;
 }
@@ -265,7 +265,7 @@ function previewImage(event, id_img, id_form = "") {
             alert("El archivo seleccionado no es una imagen.");
             fileinput.value = ""; //Vaciamos el FileList para que el usuario pueda seleccionar otro archivo válido.
             if (id_form == "update") window.location.reload();
-            else preview_img.src = "http://127.0.0.1:8000/img/default-avatar.png";
+            else preview_img.src = "https://codeacademypro.onrender.com/img/default-avatar.png";
             return;
         }
 
@@ -280,7 +280,7 @@ function previewImage(event, id_img, id_form = "") {
             alert('Ocurrió un error al cargar la imagen. Por favor, inténtelo de nuevo.');
             fileinput.value = ""; //Vaciamos el FileList para que el usuario pueda seleccionar otro archivo válido.
             if (id_form == "update") window.location.reload();
-            else preview_img.src = "http://127.0.0.1:8000/img/default-avatar.png";
+            else preview_img.src = "https://codeacademypro.onrender.com/img/default-avatar.png";
         }
 
         reader.readAsDataURL(file);
@@ -288,7 +288,7 @@ function previewImage(event, id_img, id_form = "") {
 
     else {
         if (id_form == "update") window.location.reload();
-        else preview_img.src = "http://127.0.0.1:8000/img/default-avatar.png";
+        else preview_img.src = "https://codeacademypro.onrender.com/img/default-avatar.png";
     }
 }
 
@@ -323,7 +323,7 @@ async function cancelRegistration() {
 
             if (response.ok) {
                 alert(data.message);
-                window.location.href = 'http://codeacademypro.edu:8000/';
+                window.location.href = 'https://codeacademypro.onrender.com/';
                 return;
             }
             else {
@@ -425,7 +425,7 @@ function deletePhoto(event, id_img) {
             return;
         }
 
-        document.getElementById(id_img).src = "http://127.0.0.1:8000/img/default-avatar.png";
+        document.getElementById(id_img).src = "https://codeacademypro.onrender.com/img/default-avatar.png";
 
         event.target.setAttribute("disabled", "");
 
