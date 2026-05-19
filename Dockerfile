@@ -30,7 +30,7 @@ RUN chmod -R 775 storage bootstrap/cache
 RUN php artisan storage:link || true
 
 # Config Nginx
-COPY docker/nginx.conf /etc/nginx/conf.d/default.conf
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 
