@@ -26,9 +26,6 @@ RUN composer install --no-dev --optimize-autoloader
 # Permisos Laravel
 RUN chmod -R 775 storage bootstrap/cache
 
-# Storage link (evita 404 en /storage)
-RUN php artisan storage:link || true
-
 # Config Nginx
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 
