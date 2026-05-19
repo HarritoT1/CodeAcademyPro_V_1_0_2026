@@ -203,10 +203,6 @@ class UserController extends Controller
                 ], 401);
             }
 
-            return response()->json([
-                'message' => 'Info:' . $token?->expires_at . 'now: ' . now(),
-            ], 404);
-
             // Si el token no es valido, decrementar la cantidad de intentos, del token de la sesión.
             if (!$token) {
                 $user_token = PasswordResetToken::find($request->session()->get('password_reset_token_id'));
