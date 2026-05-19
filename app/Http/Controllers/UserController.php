@@ -204,8 +204,8 @@ class UserController extends Controller
             }
 
             return response()->json([
-                'message' => 'Info:' . $token?->expires_at ?? 'nulo' . ' - ' . now(),
-            ]);
+                'message' => 'Info:' . $token?->expires_at . 'now: ' . now(),
+            ], 404);
 
             // Si el token no es valido, decrementar la cantidad de intentos, del token de la sesión.
             if (!$token) {
